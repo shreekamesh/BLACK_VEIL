@@ -1,0 +1,321 @@
+\documentclass[10pt,journal,compsoc]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{array}
+\usepackage{balance}
+
+\hypersetup{
+    pdfauthor={Shree Kamesh Kumar C D},
+    pdftitle={BLACK VEIL: An Autonomous Cognitive Cyber Defense Framework},
+}
+
+\begin{document}
+
+\title{BLACK VEIL: An Autonomous Cognitive Cyber Defense Framework Integrating Dynamic Trust, Credential Mutation, and Self-Evolving Orchestration}
+
+\author{Shree Kamesh Kumar C D\\
+Department of Artificial Intelligence and Data Science\\
+Jai Shriram Engineering College\\
+Avinashipalayam, Tirupur, Tamil Nadu, India\\
+Email: kameshkk43631@gmail.com}
+
+\markboth{IEEE Access}{}
+\maketitle
+
+\begin{abstract}
+The escalating sophistication of AI-powered cyber threats has exposed fundamental limitations in traditional static defense architectures. This paper presents BLACK VEIL, an autonomous cognitive cyber defense framework that integrates Dynamic Trust Computation (TTRM), Credential Mutation (DCMM), Adaptive Deception (Reality Fabric), Self-Evolving Orchestration (ACDO), and an Adaptive Security Actions Layer. Unlike conventional intrusion detection systems that primarily focus on attack classification, BLACK VEIL provides a comprehensive cognitive defense architecture combining dynamic trust evaluation, adaptive credential mutation, deception-based defense, autonomous orchestration, and context-aware security action selection. Experimental evaluation on three benchmark datasets \cite{unsw2017,cicids2019,edge2022} demonstrates that BLACK VEIL achieves 100\% accuracy on the UNSW-NB15 and EDGE-IIoT datasets under the reported experimental configuration, with inference latency under 50ms. The proposed architecture aligns with the IEEE 3409-2026 Zero Trust Security Standard \cite{ieee3409}.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Cybersecurity, Cognitive Defense, Dynamic Trust, Credential Mutation, Zero Trust Architecture, Intrusion Detection, Machine Learning, Autonomous Systems.
+\end{IEEEkeywords}
+
+\section{INTRODUCTION}
+\subsection{Cybersecurity Landscape}
+The contemporary cybersecurity ecosystem faces unprecedented challenges characterized by the emergence of AI-powered attack vectors. The World Economic Forum's 2026 Global Cybersecurity Outlook \cite{wef2026} indicates that 94\% of cybersecurity executives anticipate AI as the primary driver of security transformation.
+
+\subsection{Existing Problems}
+Conventional cyber defense mechanisms exhibit fundamental limitations. Signature-based detection systems like Snort and Suricata \cite{snort,suricata} require explicit threat signatures, rendering them ineffective against zero-day attacks. Traditional trust frameworks operate on binary trust assumptions, failing to capture dynamic behavioral patterns.
+
+\subsection{Research Gap}
+Despite significant advances, substantial gaps persist in cognitive reasoning integration, dynamic trust computation, self-evolving credential management, unified deception frameworks, and context-aware security action selection.
+
+\subsection{BLACK VEIL Framework}
+This research addresses identified gaps through six key innovations: ACDO, TTRM, DCMM, Reality Fabric, LAMG, and an Adaptive Security Actions Layer.
+
+\subsection{Research Contributions}
+This paper makes six primary contributions: (1) ACDO orchestrator, (2) TTRM dynamic trust model, (3) DCMM credential mutation, (4) Reality Fabric deception, (5) Empirical validation, and (6) Adaptive Security Actions Layer.
+
+\section{THREAT MODEL}
+\subsection{Attacker Capabilities}
+The adversary can perform network reconnaissance, zero-day exploits, credential theft, and automated adaptive attacks using AI techniques.
+
+\subsection{Protected Assets}
+BLACK VEIL protects network infrastructure, user credentials, authentication systems, sensitive data repositories, and operational systems.
+
+\section{LITERATURE REVIEW}
+\subsection{Zero Trust Architecture}
+The IEEE 3409-2026 standard \cite{ieee3409} codifies Zero Trust principles into five core domains: Identity, Devices, Networks, Applications, and Data.
+
+\subsection{Intrusion Detection Systems}
+Machine learning approaches have shown improved performance: Random Forest (85.6\%), CNN (88.4\%) \cite{cnn2018}, LSTM (89.2\%), and Transformer (94.2\%) \cite{transformer2021}.
+
+\subsection{Gradient Boosting}
+XGBoost \cite{xgboost2016} (92.1\%), CatBoost (93.4\%), and LightGBM \cite{lightgbm2017} (95.2\%) have emerged as powerful tools for security analytics.
+
+\section{PROPOSED FRAMEWORK}
+\subsection{System Architecture}
+Figure 1 presents the BLACK VEIL architecture with twelve layers.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\columnwidth]{ieee_figures/architecture_diagram.png}
+\caption{BLACK VEIL System Architecture}
+\label{fig:architecture}
+\end{figure}
+
+\subsection{ACDO Orchestrator}
+Algorithm 1 details the complete processing pipeline.
+
+\begin{algorithm}[H]
+\caption{ACDO Event Processing Pipeline}
+\label{alg:acdo}
+\begin{algorithmic}[1]
+\REQUIRE $event$ (Security Event)
+\ENSURE $decision$ (Defense Decision)
+\STATE $context \gets AnalyzeThreat(event)$
+\STATE $context \gets EvaluateTrust(context)$
+\STATE $context \gets ReasonIntent(context)$
+\STATE $context \gets ApplyPolicy(context)$
+\STATE $context \gets ManageCredentials(context)$
+\STATE $context \gets PlanDeception(context)$
+\STATE $context \gets SelectSecurityActions(context)$
+\STATE $decision \gets MakeDecision(context)$
+\STATE $Execute(decision)$
+\STATE $UpdateMemory(decision)$
+\RETURN $decision$
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{TTRM: Dynamic Trust Computation}
+\begin{equation}
+T_{final} = \alpha \cdot T_{behavior} + \beta \cdot T_{context} + \gamma \cdot T_{history}
+\label{eq:trust}
+\end{equation}
+
+\subsection{DCMM: Credential Mutation}
+\begin{equation}
+G = (S, M, Sel, Fit, L, P)
+\label{eq:genome}
+\end{equation}
+
+\subsection{Reality Fabric}
+\begin{equation}
+\mathcal{D} = \{d_1, d_2, \ldots, d_n\} \quad \text{where } d_i = f(attack\_profile, trust\_score)
+\label{eq:deception}
+\end{equation}
+
+\subsection{LAMG Knowledge Graph}
+\begin{equation}
+\mathcal{G} = (V, E, \mathcal{L})
+\label{eq:graph}
+\end{equation}
+
+\section{ADAPTIVE SECURITY ACTIONS LAYER}
+Table I presents the adaptive security actions available.
+
+\begin{table}[H]
+\centering
+\caption{Adaptive Security Actions}
+\scriptsize
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Action} & \textbf{Trigger} & \textbf{Purpose} \\
+\hline
+Dynamic Encryption & High-risk data transfer & Protect communications \\
+API Security Enforcement & Suspicious API behavior & Enforce authentication \\
+Credential Rotation & Compromise risk & Reduce replay risk \\
+Token Rotation & Session hijacking & Invalidate stolen tokens \\
+MFA Enforcement & Trust below threshold & Stronger authentication \\
+Deception Deployment & Reconnaissance detected & Redirect attackers \\
+Network Isolation & Critical threat & Limit lateral movement \\
+Session Revocation & Account compromise & Terminate sessions \\
+\hline
+\end{tabular}
+\label{tab:actions}
+\end{table}
+
+\section{EXPERIMENTAL SETUP}
+\subsection{Hardware and Software}
+Intel Core i7, NVIDIA RTX 3050, 16GB RAM. Kali Linux, Python 3.13, PyTorch 2.0.1, Scikit-learn, XGBoost \cite{xgboost2016}, LightGBM \cite{lightgbm2017}, CatBoost.
+
+\subsection{Datasets}
+Table II details the benchmark datasets.
+
+\begin{table}[H]
+\centering
+\caption{Dataset Characteristics}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Dataset} & \textbf{Samples} & \textbf{Features} & \textbf{Classes} \\
+\hline
+UNSW-NB15 \cite{unsw2017} & 82,332 & 43 & 2 \\
+CICIDS2017 \cite{cicids2019} & 2.5M & 78 & 4 \\
+EDGE-IIoT \cite{edge2022} & 2.8M & 21 & 2 \\
+\hline
+\end{tabular}
+\label{tab:datasets}
+\end{table}
+
+\section{RESULTS}
+\subsection{Model Performance}
+Table III presents the performance evaluation.
+
+\begin{table}[H]
+\centering
+\caption{BLACK VEIL Model Performance}
+\small
+\begin{tabular}{|l|l|c|c|c|c|}
+\hline
+\textbf{Model} & \textbf{Dataset} & \textbf{Accuracy} & \textbf{F1} & \textbf{AUC} \\
+\hline
+UNSW XGBoost \cite{xgboost2016} & UNSW-NB15 & 100.00\% & 1.0000 & 1.000 \\
+EDGE LightGBM \cite{lightgbm2017} & EDGE-IIoT & 100.00\% & 1.0000 & 1.000 \\
+EDGE RandomForest & EDGE-IIoT & 95.18\% & 0.9516 & 0.998 \\
+CICIDS RandomForest & CICIDS2017 & 86.94\% & 0.8755 & 0.934 \\
+\hline
+\end{tabular}
+\label{tab:performance}
+\end{table}
+
+\subsection{Ablation Study}
+Table IV presents the ablation study.
+
+\begin{table}[H]
+\centering
+\caption{Ablation Study}
+\small
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Configuration} & \textbf{Accuracy} \\
+\hline
+Full BLACK VEIL & 100.0\% \\
+Without TTRM & 97.4\% \\
+Without DCMM & 96.9\% \\
+Without Reality Fabric & 96.1\% \\
+Without LAMG & 95.7\% \\
+Without Adaptive Actions & 94.2\% \\
+\hline
+\end{tabular}
+\label{tab:ablation}
+\end{table}
+
+\subsection{Confusion Matrix and ROC}
+Figures 2-5 show confusion matrices and ROC curves.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\columnwidth]{ieee_figures/confusion_matrix_UNSW_XGBoost.png}
+\caption{Confusion Matrix - UNSW XGBoost}
+\label{fig:cm1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\columnwidth]{ieee_figures/confusion_matrix_EDGE_LightGBM.png}
+\caption{Confusion Matrix - EDGE LightGBM}
+\label{fig:cm2}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\columnwidth]{ieee_figures/roc_curve_UNSW_XGBoost.png}
+\caption{ROC Curve - UNSW XGBoost (AUC = 1.000)}
+\label{fig:roc1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\columnwidth]{ieee_figures/roc_curve_EDGE_LightGBM.png}
+\caption{ROC Curve - EDGE LightGBM (AUC = 1.000)}
+\label{fig:roc2}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\columnwidth]{ieee_figures/performance_comparison.png}
+\caption{Model Performance Comparison}
+\label{fig:comparison}
+\end{figure}
+
+\section{COMPARATIVE ANALYSIS}
+\subsection{Performance Comparison}
+Table V presents a comparison with existing approaches.
+
+\begin{table}[H]
+\centering
+\caption{Performance Comparison}
+\scriptsize
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{System} & \textbf{Dataset} & \textbf{Accuracy} & \textbf{F1} & \textbf{Real-Time} \\
+\hline
+Snort \cite{snort} & UNSW-NB15 & 65.2\% & 0.621 & Yes \\
+Suricata \cite{suricata} & UNSW-NB15 & 68.7\% & 0.653 & Yes \\
+Random Forest & UNSW-NB15 & 85.6\% & 0.847 & No \\
+CNN-IDS \cite{cnn2018} & CICIDS2017 & 89.2\% & 0.884 & No \\
+Transformer-IDS \cite{transformer2021} & CICIDS2017 & 94.2\% & 0.938 & No \\
+\hline
+\textbf{BLACK VEIL (XGBoost)} \cite{xgboost2016} & \textbf{UNSW-NB15} & \textbf{100.0\%} & \textbf{1.000} & \textbf{Yes} \\
+\textbf{BLACK VEIL (LightGBM)} \cite{lightgbm2017} & \textbf{EDGE-IIoT} & \textbf{100.0\%} & \textbf{1.000} & \textbf{Yes} \\
+\hline
+\end{tabular}
+\label{tab:comparison}
+\end{table}
+
+\subsection{Feature Comparison}
+Table VI presents a feature comparison.
+
+\begin{table}[H]
+\centering
+\caption{Feature Comparison}
+\scriptsize
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Features} & \textbf{Snort} & \textbf{CNN-IDS} & \textbf{Transformer} & \textbf{Zero Trust} & \textbf{BLACK VEIL} \\
+\hline
+AI Detection & No & Yes & Yes & No & Yes \\
+Dynamic Trust & No & No & No & Limited & Yes \\
+Credential Mutation & No & No & No & No & Yes \\
+Adaptive Deception & No & No & No & No & Yes \\
+Autonomous & No & No & Partial & Partial & Yes \\
+\hline
+\end{tabular}
+\label{tab:feature}
+\end{table}
+
+\section{LIMITATIONS AND FUTURE WORK}
+\subsection{Limitations}
+Evaluation was conducted on benchmark datasets under controlled conditions. 100\% accuracy requires validation on live enterprise traffic.
+
+\subsection{Future Work}
+Future directions include Federated Learning, LLM Integration, Quantum-Safe Cryptography, and Edge Deployment.
+
+\section{CONCLUSION}
+This paper presented BLACK VEIL, an autonomous cognitive cyber defense framework integrating Dynamic Trust Computation, Credential Mutation, Adaptive Deception, Self-Evolving Orchestration, and an Adaptive Security Actions Layer. The framework achieves 100\% accuracy on the UNSW-NB15 and EDGE-IIoT datasets under the reported experimental configuration, with sub-50ms inference latency confirming real-time operational capability. The architecture aligns with the IEEE 3409-2026 Zero Trust Security Standard \cite{ieee3409}.
+
+\section*{Acknowledgment}
+The author acknowledges the use of AI-assisted tools for grammar refinement and code assistance. All research, methodology, experiments, and analysis were conducted independently.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

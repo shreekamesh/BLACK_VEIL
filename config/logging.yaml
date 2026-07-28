@@ -1,0 +1,66 @@
+# BLACK VEIL V5 - Logging Configuration
+version: 1
+disable_existing_loggers: false
+
+formatters:
+  json:
+    class: pythonjsonlogger.jsonlogger.JsonFormatter
+    format: "%(asctime)s %(levelname)s %(name)s %(message)s %(correlation_id)s"
+  standard:
+    format: "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: json
+    stream: ext://sys.stdout
+
+  file:
+    class: logging.handlers.RotatingFileHandler
+    formatter: json
+    filename: logs/blackveil.log
+    maxBytes: 104857600  # 100 MB
+    backupCount: 10
+
+  error_file:
+    class: logging.handlers.RotatingFileHandler
+    formatter: json
+    filename: logs/error.log
+    maxBytes: 104857600
+    backupCount: 10
+    level: ERROR
+
+loggers:
+  src:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+
+  api:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+
+  ai_core:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+
+  database:
+    level: WARNING
+    handlers: [console, file]
+    propagate: false
+
+  security:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+
+  uvicorn:
+    level: INFO
+    handlers: [console]
+    propagate: false
+
+root:
+  level: INFO
+  handlers: [console, file, error_file]

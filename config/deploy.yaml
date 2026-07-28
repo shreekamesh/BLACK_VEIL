@@ -1,0 +1,173 @@
+# BLACK VEIL V5 - Deployment Configuration
+# All values configurable via environment variables with BV_ prefix
+
+# ── General Settings ───────────────────────────────────────────
+app:
+  name: "BLACK VEIL V5"
+  version: "5.0.0"
+  debug: false
+  environment: "production"  # development | staging | production
+
+# ── Server Configuration ──────────────────────────────────────
+server:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 4
+  reload: false
+  cors_origins: ["*"]
+  trusted_hosts: ["*"]
+  rate_limit: 1000  # requests per minute
+
+# ── Logging Configuration ─────────────────────────────────────
+logging:
+  level: "INFO"
+  format: "json"  # json | text
+  file: "logs/blackveil.log"
+  max_size: 100     # MB
+  backup_count: 10
+  correlation_id: true
+
+# ── Database Configuration ────────────────────────────────────
+database:
+  postgres:
+    host: "localhost"
+    port: 5432
+    database: "blackveil"
+    username: "blackveil"
+    password: "blackveil"
+    pool_size: 10
+    max_overflow: 20
+    echo: false
+  redis:
+    host: "localhost"
+    port: 6379
+    db: 0
+    password: ""
+    decode_responses: true
+  mongodb:
+    host: "localhost"
+    port: 27017
+    database: "blackveil_logs"
+    username: ""
+    password: ""
+
+# ── Security Configuration ────────────────────────────────────
+security:
+  jwt:
+    secret: "change-me-in-production-use-vault"  # Override via BV_JWT_SECRET
+    algorithm: "HS256"
+    access_token_expire_minutes: 60
+    refresh_token_expire_days: 7
+  encryption:
+    key: ""  # Auto-generated if empty
+  api_key:
+    secret: "change-me-in-production"
+    rate_limit: 100  # requests per window
+    rate_window: 60  # seconds
+
+# ── AI / ML Configuration ─────────────────────────────────────
+ai:
+  models_dir: "models"
+  datasets_dir: "master_dataset"
+  default_batch_size: 32
+  default_learning_rate: 0.001
+  default_epochs: 100
+  early_stopping_patience: 10
+  validation_split: 0.2
+  test_split: 0.1
+  random_seed: 42
+  device: "auto"  # cpu | cuda | mps | auto
+
+  # Model-specific configurations
+  models:
+    unsw_rf:
+      type: "RandomForest"
+      domain: "network"
+      file: "UNSW_RF.pkl"
+      feature_count: 42
+      required: true
+    edge_rf:
+      type: "RandomForest"
+      domain: "iot"
+      file: "EDGE_RF.pkl"
+      feature_count: 21
+      required: true
+    cert_scaler:
+      type: "MinMaxScaler"
+      domain: "user"
+      file: "CERT_MinMaxScaler.pkl"
+      required: true
+
+  # Fusion weights
+  fusion_weights:
+    network: 0.30
+    iot: 0.25
+    user: 0.25
+    cicids: 0.20
+
+# ── Trust Configuration ───────────────────────────────────────
+trust:
+  decay_constant: 0.02       # λ in trust decay formula
+  recovery_decay: 0.1        # μ in recovery formula
+  recovery_max: 50.0
+  trust_min: 0.0
+  trust_max: 100.0
+  initial_trust: 50.0
+  confidence_threshold: 0.7
+  drift_detection:
+    cusum_k: 0.5             # CUSUM allowance
+    cusum_h: 3.0             # CUSUM threshold
+
+# ── Deception Configuration ───────────────────────────────────
+deception:
+  initial_effectiveness: 0.5
+  learning_rate: 0.1         # η in ACDM
+  cost_max: 1.0
+  detection_prob_max: 0.3
+  strategy_count: 5
+  evolution_generations: 10
+
+# ── Credential Configuration (DCMM) ───────────────────────────
+credentials:
+  genome_length: 48
+  mutation_rate: 0.1
+  initial_fitness: 0.5
+  min_diversity: 0.3
+  lifetime_base: 3600       # seconds
+  max_generations: 50
+  entropy_weights: [0.4, 0.3, 0.2, 0.1]  # w1, w2, w3, w4
+
+# ── Consensus Configuration ───────────────────────────────────
+consensus:
+  num_agents: 4
+  byzantine_threshold: 1     # f ≤ (N-1)/2 = 1 for N=4
+  agreement_threshold: 0.67  # θ
+  timeout_ms: 500
+  fallback_enabled: true
+
+# ── Monitoring Configuration ──────────────────────────────────
+monitoring:
+  metrics_enabled: true
+  metrics_port: 9090
+  tracing_enabled: true
+  tracing_sample_rate: 0.1
+  health_check_interval: 30  # seconds
+  alert_channels: ["log", "webhook"]
+  webhook_url: ""
+
+# ── Response Configuration ────────────────────────────────────
+response:
+  auto_response: true
+  max_response_time_ms: 5000
+  rollback_enabled: true
+  notification_enabled: true
+
+# ── Feature Flags ─────────────────────────────────────────────
+features:
+  autonomous_mode: false
+  deception_enabled: true
+  credential_mutation: true
+  trust_recovery: true
+  consensus_enabled: true
+  explainable_ai: true
+  digital_twin: true

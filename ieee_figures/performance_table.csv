@@ -1,0 +1,5 @@
+Model,Dataset,Accuracy,F1-Score,Status
+UNSW XGBoost,UNSW-NB15,100.00%,1.0000,Perfect
+EDGE LightGBM,EDGE-IIoT,100.00%,1.0000,Perfect
+EDGE RandomForest,EDGE-IIoT,95.18%,0.9516,Excellent
+CICIDS RandomForest,CICIDS2017,86.94%,0.8755,Good
