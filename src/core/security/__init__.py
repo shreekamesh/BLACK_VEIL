@@ -1,35 +1,65 @@
 """
-BLACK VEIL Dynamic Security Layer
-100% Dynamic - No Static Methods
-
-Core Philosophy: Every encryption operation is unique.
-- Keys rotate based on time, usage, events, risk, entropy
-- Algorithms selected dynamically by context
-- Parameters mutate continuously
-- Self-healing with automatic rotation
-- Forward secrecy guaranteed
-- Context-Aware: Kerckhoffs-inspired dynamic parameters
-- Deception Fabric: Fake encryption artifacts for attacker confusion
+BLACK VEIL Security Module
 """
+
+# Existing
 from .dynamic_encryption import (
-    DynamicEncryptionEngine, EncryptionContext, DynamicKey,
-    SecurityContext, ContextAwareEncryptionEngine,
-    EncryptionRealityFabric, DynamicEncryptionPolicyEngine,
-    DynamicEncryptionSystem
+    DynamicEncryptionEngine,
+    EncryptionContext,
+    DynamicKey
 )
-from .dynamic_hasher import DynamicPasswordHasher
-from .dynamic_jwt import DynamicJWTManager
-from .dynamic_tls import DynamicTLSManager
-from .rotation_monitor import RotationMonitor
+
+# New encryption modules
+from .dynamic_algorithm_selector import (
+    DynamicAlgorithmSelector,
+    SecurityLevel,
+    AlgorithmType,
+    AlgorithmConfig
+)
+
+from .risk_adaptive_encryption import (
+    RiskAdaptiveEncryption,
+    EncryptionStrength,
+    EncryptionPolicy
+)
+
+from .key_rotation_manager import (
+    KeyRotationManager,
+    KeyInfo
+)
+
+from .communication_security import (
+    CommunicationSecurity,
+    ProtocolVersion,
+    CipherSuite,
+    SecurityContext
+)
+
+from .timing_security import (
+    TimingSecurity,
+    TimingProtection
+)
 
 __all__ = [
-    # Legacy (backward compatible)
-    'DynamicEncryptionEngine', 'EncryptionContext', 'DynamicKey',
-    'DynamicPasswordHasher', 'DynamicJWTManager', 'DynamicTLSManager',
-    'RotationMonitor',
-    # New Kerckhoffs-inspired components
-    'SecurityContext', 'ContextAwareEncryptionEngine',
-    'EncryptionRealityFabric', 'DynamicEncryptionPolicyEngine',
-    'DynamicEncryptionSystem',
+    # Existing
+    'DynamicEncryptionEngine',
+    'EncryptionContext',
+    'DynamicKey',
+    
+    # New
+    'DynamicAlgorithmSelector',
+    'SecurityLevel',
+    'AlgorithmType',
+    'AlgorithmConfig',
+    'RiskAdaptiveEncryption',
+    'EncryptionStrength',
+    'EncryptionPolicy',
+    'KeyRotationManager',
+    'KeyInfo',
+    'CommunicationSecurity',
+    'ProtocolVersion',
+    'CipherSuite',
+    'SecurityContext',
+    'TimingSecurity',
+    'TimingProtection'
 ]
-
