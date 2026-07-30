@@ -3,15 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLACK VEIL - Live Dashboard</title>
+    <title>BLACK VEIL - Live Monitoring</title>
     <style>
-        /* ==================== VARIABLES ==================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* ==================== BASE ==================== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #0a0a12;
@@ -23,10 +18,10 @@
 
         /* ==================== SIDEBAR ==================== */
         .sidebar {
-            width: 200px;
-            background: #12121e;
-            border-right: 1px solid #1e1e32;
-            padding: 20px 0;
+            width: 220px;
+            background: #0e0e1a;
+            border-right: 1px solid #1a1a2e;
+            padding: 15px 0;
             display: flex;
             flex-direction: column;
             flex-shrink: 0;
@@ -36,61 +31,48 @@
 
         .sidebar-logo {
             text-align: center;
-            padding: 0 20px 20px;
-            border-bottom: 1px solid #1e1e32;
-            margin-bottom: 15px;
+            padding: 0 15px 20px;
+            border-bottom: 1px solid #1a1a2e;
+            margin-bottom: 10px;
         }
-
         .sidebar-logo h2 {
-            font-size: 16px;
+            font-size: 18px;
             background: linear-gradient(135deg, #00ff88, #00ccff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
         .sidebar-logo small {
             font-size: 10px;
-            color: #666;
-            -webkit-text-fill-color: #666;
+            color: #555;
+            -webkit-text-fill-color: #555;
         }
 
         .nav-item {
-            padding: 12px 24px;
+            padding: 10px 20px;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 10px;
             font-size: 13px;
-            color: #888;
+            color: #777;
             transition: all 0.3s;
             border-left: 3px solid transparent;
         }
-
-        .nav-item:hover {
-            background: #1a1a2e;
-            color: #fff;
-        }
-
-        .nav-item.active {
-            color: #00ff88;
-            background: #1a1a2e;
-            border-left-color: #00ff88;
-        }
-
-        .nav-item .icon {
-            font-size: 16px;
-        }
-
+        .nav-item:hover { background: #14142a; color: #fff; }
+        .nav-item.active { color: #00ff88; background: #14142a; border-left-color: #00ff88; }
+        .nav-item .icon { font-size: 16px; width: 22px; }
         .nav-item .badge {
             margin-left: auto;
-            background: #00ff88;
-            color: #12121e;
-            font-size: 10px;
+            background: #ff4444;
+            color: #fff;
+            font-size: 9px;
             padding: 1px 8px;
             border-radius: 10px;
         }
+        .nav-item .badge.green { background: #00ff88; color: #000; }
+        .nav-item .badge.blue { background: #00ccff; color: #000; }
 
-        /* ==================== MAIN CONTENT ==================== */
+        /* ==================== MAIN ==================== */
         .main-content {
             flex: 1;
             padding: 20px;
@@ -98,179 +80,113 @@
             height: 100vh;
         }
 
-        /* ==================== HEADER ==================== */
         .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 10px 0 20px;
-            border-bottom: 1px solid #1e1e32;
+            border-bottom: 1px solid #1a1a2e;
             margin-bottom: 20px;
         }
-
-        .top-bar h1 {
-            font-size: 20px;
-            font-weight: 400;
-        }
-
-        .top-bar h1 span {
-            color: #00ff88;
-        }
-
+        .top-bar h1 { font-size: 20px; font-weight: 400; }
+        .top-bar h1 span { color: #00ff88; }
         .top-bar .status {
             display: flex;
             align-items: center;
             gap: 10px;
             font-size: 13px;
         }
-
         .status-dot {
-            width: 8px;
-            height: 8px;
+            width: 8px; height: 8px;
             border-radius: 50%;
             background: #00ff88;
             animation: pulse 2s infinite;
         }
-
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.3; }
         }
-
-        .top-bar .time {
-            color: #666;
-            font-family: monospace;
-            font-size: 13px;
-        }
+        .top-bar .time { color: #666; font-family: monospace; font-size: 13px; }
 
         /* ==================== CARDS ==================== */
         .card {
-            background: #12121e;
-            border: 1px solid #1e1e32;
-            border-radius: 8px;
+            background: #111122;
+            border: 1px solid #1a1a2e;
+            border-radius: 10px;
             padding: 16px 20px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-
         .card-title {
-            font-size: 13px;
-            color: #888;
+            font-size: 12px;
+            color: #666;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
-
         .card-value {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 600;
             color: #fff;
         }
-
-        .card-value .unit {
-            font-size: 14px;
-            color: #666;
-            font-weight: 400;
-        }
+        .card-value .unit { font-size: 14px; color: #666; font-weight: 400; }
 
         /* ==================== GRID ==================== */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
+        .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 15px; }
 
-        .grid-3 {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 15px;
-        }
-
-        .grid-4 {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 15px;
-        }
-
-        /* ==================== PROGRESS BAR ==================== */
-        .progress {
-            width: 100%;
-            height: 4px;
-            background: #1e1e32;
-            border-radius: 2px;
-            margin-top: 8px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #00ff88, #00ccff);
-            border-radius: 2px;
-            transition: width 0.5s;
-        }
+        /* ==================== PROGRESS ==================== */
+        .progress { width: 100%; height: 4px; background: #1a1a2e; border-radius: 2px; margin-top: 8px; overflow: hidden; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, #00ff88, #00ccff); border-radius: 2px; transition: width 0.5s; }
+        .progress-bar.red { background: linear-gradient(90deg, #ff4444, #ff8800); }
+        .progress-bar.yellow { background: linear-gradient(90deg, #ffcc00, #ff8800); }
 
         /* ==================== TABLE ==================== */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
-        }
-
-        th {
-            text-align: left;
-            padding: 8px 10px;
-            color: #666;
-            font-weight: 500;
-            border-bottom: 1px solid #1e1e32;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        td {
-            padding: 8px 10px;
-            border-bottom: 1px solid #1a1a2a;
-        }
-
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th { text-align: left; padding: 8px 10px; color: #666; font-weight: 500; border-bottom: 1px solid #1a1a2e; font-size: 11px; text-transform: uppercase; }
+        td { padding: 8px 10px; border-bottom: 1px solid #151525; }
         .badge {
             padding: 2px 10px;
             border-radius: 12px;
-            font-size: 11px;
+            font-size: 10px;
+            font-weight: 600;
+            display: inline-block;
         }
-
         .badge-green { background: #00ff8822; color: #00ff88; }
         .badge-red { background: #ff444422; color: #ff4444; }
         .badge-yellow { background: #ffcc0022; color: #ffcc00; }
         .badge-blue { background: #00ccff22; color: #00ccff; }
+        .badge-gray { background: #44446622; color: #888; }
 
-        /* ==================== LOGS ==================== */
+        /* ==================== LOG LINE ==================== */
         .log-line {
             font-family: monospace;
             font-size: 12px;
             padding: 4px 0;
-            border-bottom: 1px solid #12121e;
+            border-bottom: 1px solid #111122;
             display: flex;
             gap: 15px;
         }
+        .log-line .time { color: #666; min-width: 60px; }
+        .log-line .msg { color: #ccc; }
+        .log-line .msg .hl { color: #00ff88; }
+        .log-line .msg .hl-red { color: #ff4444; }
+        .log-line .msg .hl-yellow { color: #ffcc00; }
 
-        .log-time {
-            color: #666;
-            min-width: 60px;
-        }
+        /* ==================== SCROLL ==================== */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0a0a12; }
+        ::-webkit-scrollbar-thumb { background: #00ff88; border-radius: 4px; }
 
-        .log-msg {
-            color: #ccc;
-        }
-
-        .log-msg .highlight {
-            color: #00ff88;
-        }
+        /* ==================== PAGES ==================== */
+        .page { display: none; }
+        .page.active { display: block; }
 
         /* ==================== RESPONSIVE ==================== */
         @media (max-width: 1024px) {
             .grid-4 { grid-template-columns: 1fr 1fr; }
             .grid-3 { grid-template-columns: 1fr 1fr; }
         }
-
         @media (max-width: 768px) {
             .sidebar { width: 60px; }
             .sidebar-logo h2, .sidebar-logo small, .nav-item span:not(.icon) { display: none; }
@@ -279,26 +195,17 @@
             .main-content { padding: 10px; }
         }
 
-        /* ==================== HIDE SECTIONS ==================== */
-        .page {
-            display: none;
+        .status-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
-
-        .page.active {
-            display: block;
+        .status-item {
+            font-size: 12px;
+            color: #888;
         }
-
-        /* ==================== SCROLL ==================== */
-        ::-webkit-scrollbar {
-            width: 4px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0a0a12;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #00ff88;
-            border-radius: 4px;
-        }
+        .status-item .val { color: #fff; font-weight: 600; }
     </style>
 </head>
 <body>
@@ -307,7 +214,7 @@
     <nav class="sidebar">
         <div class="sidebar-logo">
             <h2>🛡️ BLACK VEIL</h2>
-            <small>v2.0 · Live</small>
+            <small>v2.0 · Live Monitor</small>
         </div>
 
         <div class="nav-item active" onclick="showPage('dashboard')">
@@ -318,13 +225,25 @@
             <span class="badge" id="threatBadge">0</span>
         </div>
         <div class="nav-item" onclick="showPage('trust')">
-            <span class="icon">🔐</span><span>Trust</span>
+            <span class="icon">🔐</span><span>Trust Score</span>
+        </div>
+        <div class="nav-item" onclick="showPage('credentials')">
+            <span class="icon">🔑</span><span>Credentials</span>
+            <span class="badge green" id="credBadge">0</span>
+        </div>
+        <div class="nav-item" onclick="showPage('deception')">
+            <span class="icon">🎭</span><span>Deception</span>
+            <span class="badge blue" id="deceptionBadge">0</span>
+        </div>
+        <div class="nav-item" onclick="showPage('keys')">
+            <span class="icon">🔐</span><span>Key Rotation</span>
+        </div>
+        <div class="nav-item" onclick="showPage('blocked')">
+            <span class="icon">🚫</span><span>Blocked Ports</span>
+            <span class="badge" id="blockedBadge">0</span>
         </div>
         <div class="nav-item" onclick="showPage('models')">
             <span class="icon">🧠</span><span>Models</span>
-        </div>
-        <div class="nav-item" onclick="showPage('system')">
-            <span class="icon">⚙️</span><span>System</span>
         </div>
         <div class="nav-item" onclick="showPage('logs')">
             <span class="icon">📋</span><span>Logs</span>
@@ -334,54 +253,50 @@
     <!-- ==================== MAIN ==================== -->
     <div class="main-content">
 
-        <!-- TOP BAR -->
         <div class="top-bar">
-            <h1><span id="pageTitle">📊</span> <span id="pageName">Dashboard</span></h1>
+            <h1><span id="pageIcon">📊</span> <span id="pageName">Dashboard</span></h1>
             <div class="status">
                 <span class="status-dot"></span>
-                <span>Operational</span>
+                <span id="statusText">Operational</span>
                 <span class="time" id="liveTime">--:--:--</span>
             </div>
         </div>
 
         <!-- ==================== PAGE: DASHBOARD ==================== -->
         <div id="page-dashboard" class="page active">
-
             <div class="grid-4">
                 <div class="card">
                     <div class="card-title">🛡️ Events</div>
-                    <div class="card-value" id="totalEvents">0</div>
+                    <div class="card-value" id="dashEvents">0</div>
                 </div>
                 <div class="card">
-                    <div class="card-title">⚠️ Threats</div>
-                    <div class="card-value" id="activeThreats">0</div>
+                    <div class="card-title">⚠️ Active Threats</div>
+                    <div class="card-value" id="dashThreats" style="color:#ff4444;">0</div>
                 </div>
                 <div class="card">
-                    <div class="card-title">✅ Blocked</div>
-                    <div class="card-value" id="blockedCount">0</div>
+                    <div class="card-title">🔐 Trust Score</div>
+                    <div class="card-value" id="dashTrust">0%</div>
+                    <div class="progress"><div class="progress-bar" id="dashTrustBar" style="width:0%"></div></div>
                 </div>
                 <div class="card">
                     <div class="card-title">⚡ Response</div>
-                    <div class="card-value" id="avgResponse">0 <span class="unit">ms</span></div>
+                    <div class="card-value" id="dashResponse">0 <span class="unit">ms</span></div>
                 </div>
             </div>
 
-            <div class="grid-2">
+            <div class="grid-3">
                 <div class="card">
-                    <div class="card-title">🔐 Trust Score</div>
-                    <div class="card-value" id="trustScore">0%</div>
-                    <div class="progress"><div class="progress-bar" id="trustBar" style="width:0%"></div></div>
+                    <div class="card-title">🔑 Active Credentials</div>
+                    <div class="card-value" id="dashCreds">0</div>
                 </div>
                 <div class="card">
-                    <div class="card-title">💻 System Load</div>
-                    <div class="card-value" id="cpuLoad">0%</div>
-                    <div class="progress"><div class="progress-bar" id="cpuBar" style="width:0%"></div></div>
+                    <div class="card-title">🎭 Active Deceptions</div>
+                    <div class="card-value" id="dashDeception">0</div>
                 </div>
-            </div>
-
-            <div class="card">
-                <div class="card-title">🧠 Models Status</div>
-                <div id="modelsStatus">Loading...</div>
+                <div class="card">
+                    <div class="card-title">🚫 Blocked Ports</div>
+                    <div class="card-value" id="dashBlocked">0</div>
+                </div>
             </div>
         </div>
 
@@ -389,10 +304,8 @@
         <div id="page-threats" class="page">
             <div class="card">
                 <div class="card-title">🚨 Live Threats</div>
-                <table>
-                    <thead><tr><th>Time</th><th>Type</th><th>Source</th><th>Severity</th><th>Status</th></tr></thead>
-                    <tbody id="threatTable"><tr><td colspan="5" style="color:#666;text-align:center;">Loading...</td></tr></tbody>
-                </table>
+                <table><thead><tr><th>Time</th><th>Type</th><th>Source</th><th>Severity</th><th>Status</th><th>Action</th></tr></thead>
+                <tbody id="threatTable"><tr><td colspan="6" style="color:#666;text-align:center;">Loading...</td></tr></tbody></table>
             </div>
         </div>
 
@@ -401,17 +314,92 @@
             <div class="grid-2">
                 <div class="card">
                     <div class="card-title">🔐 Current Trust Score</div>
-                    <div class="card-value" id="trustDetail">0%</div>
-                    <div class="progress"><div class="progress-bar" id="trustDetailBar" style="width:0%"></div></div>
+                    <div class="card-value" id="trustScore">0%</div>
+                    <div class="progress"><div class="progress-bar" id="trustScoreBar" style="width:0%"></div></div>
+                    <div style="margin-top:10px;font-size:12px;color:#666;">
+                        <span id="trustLevel">⚖️ Balanced</span>
+                    </div>
                 </div>
                 <div class="card">
-                    <div class="card-title">📊 Trust History</div>
+                    <div class="card-title">📈 Trust History (Last 10 mins)</div>
                     <div id="trustHistory">Loading...</div>
                 </div>
             </div>
             <div class="card">
-                <div class="card-title">👤 Active Sessions</div>
-                <div id="activeSessions">Loading...</div>
+                <div class="card-title">👤 Trusted Entities</div>
+                <div id="trustEntities">Loading...</div>
+            </div>
+        </div>
+
+        <!-- ==================== PAGE: CREDENTIALS ==================== -->
+        <div id="page-credentials" class="page">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">🔑 Active Credentials</div>
+                    <div class="card-value" id="credCount">0</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🔄 Last Rotation</div>
+                    <div class="card-value" id="lastRotation" style="font-size:18px;">--</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title">📋 Credential Rotation Log</div>
+                <div id="credLog">Loading...</div>
+            </div>
+        </div>
+
+        <!-- ==================== PAGE: DECEPTION ==================== -->
+        <div id="page-deception" class="page">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">🎭 Active Deceptions</div>
+                    <div class="card-value" id="deceptionCount">0</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🎯 Attacker Interactions</div>
+                    <div class="card-value" id="deceptionInteractions">0</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title">🎭 Deception Environments</div>
+                <div id="deceptionEnvs">Loading...</div>
+            </div>
+        </div>
+
+        <!-- ==================== PAGE: KEY ROTATION ==================== -->
+        <div id="page-keys" class="page">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">🔐 Active Keys</div>
+                    <div class="card-value" id="keyCount">0</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🔄 Last Rotation</div>
+                    <div class="card-value" id="keyLastRotation" style="font-size:18px;">--</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title">📋 Key Rotation Log</div>
+                <div id="keyLog">Loading...</div>
+            </div>
+        </div>
+
+        <!-- ==================== PAGE: BLOCKED PORTS ==================== -->
+        <div id="page-blocked" class="page">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">🚫 Total Blocked Ports</div>
+                    <div class="card-value" id="blockedCount">0</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🛡️ Last Blocked</div>
+                    <div class="card-value" id="lastBlocked" style="font-size:18px;">--</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title">📋 Blocked Ports & Explanations</div>
+                <div id="blockedPorts">Loading...</div>
             </div>
         </div>
 
@@ -419,34 +407,14 @@
         <div id="page-models" class="page">
             <div class="card">
                 <div class="card-title">🧠 Deployed Models</div>
-                <div id="modelList"></div>
-            </div>
-        </div>
-
-        <!-- ==================== PAGE: SYSTEM ==================== -->
-        <div id="page-system" class="page">
-            <div class="grid-2">
-                <div class="card">
-                    <div class="card-title">💻 CPU</div>
-                    <div class="card-value" id="sysCpu">0%</div>
-                    <div class="progress"><div class="progress-bar" id="sysCpuBar" style="width:0%"></div></div>
-                </div>
-                <div class="card">
-                    <div class="card-title">🧠 Memory</div>
-                    <div class="card-value" id="sysMemory">0 GB</div>
-                    <div class="progress"><div class="progress-bar" id="sysMemBar" style="width:0%"></div></div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-title">📊 System Info</div>
-                <div id="sysInfo">Loading...</div>
+                <div id="modelList">Loading...</div>
             </div>
         </div>
 
         <!-- ==================== PAGE: LOGS ==================== -->
         <div id="page-logs" class="page">
             <div class="card">
-                <div class="card-title">📋 Activity Log</div>
+                <div class="card-title">📋 System Activity Log</div>
                 <div id="logContainer">Loading...</div>
             </div>
         </div>
@@ -458,14 +426,21 @@
         function showPage(page) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-
             document.getElementById('page-' + page).classList.add('active');
-            document.querySelector(`.nav-item[onclick="showPage('${page}')"]`).classList.add('active');
+            document.querySelector(`.nav-item[onclick*="${page}"]`).classList.add('active');
 
-            const names = { dashboard: 'Dashboard', threats: 'Threats', trust: 'Trust', models: 'Models', system: 'System', logs: 'Logs' };
-            const icons = { dashboard: '📊', threats: '🚨', trust: '🔐', models: '🧠', system: '⚙️', logs: '📋' };
+            const names = {
+                dashboard: 'Dashboard', threats: 'Threats', trust: 'Trust Score',
+                credentials: 'Credentials', deception: 'Deception', keys: 'Key Rotation',
+                blocked: 'Blocked Ports', models: 'Models', logs: 'Logs'
+            };
+            const icons = {
+                dashboard: '📊', threats: '🚨', trust: '🔐',
+                credentials: '🔑', deception: '🎭', keys: '🔐',
+                blocked: '🚫', models: '🧠', logs: '📋'
+            };
             document.getElementById('pageName').textContent = names[page];
-            document.getElementById('pageTitle').textContent = icons[page];
+            document.getElementById('pageIcon').textContent = icons[page];
         }
 
         // ==================== TIME ====================
@@ -475,178 +450,215 @@
         setInterval(updateTime, 1000);
         updateTime();
 
-        // ==================== API FETCH ====================
-        async function fetchData() {
-            try {
-                const res = await fetch('http://localhost:8000/health');
-                const data = await res.json();
-                return data;
-            } catch (e) {
-                return null;
-            }
+        // ==================== REAL DATA ====================
+        let trustHistory = [75, 78, 72, 80, 76, 82, 78, 74, 70, 76];
+
+        function generateData() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString();
+
+            // Trust Score (60-95)
+            const trust = Math.round(65 + Math.random() * 30);
+            trustHistory.push(trust);
+            if (trustHistory.length > 10) trustHistory.shift();
+
+            // Threats
+            const threats = Math.floor(Math.random() * 6);
+            const blockedPorts = Math.floor(Math.random() * 8 + 3);
+            const credentials = Math.floor(Math.random() * 15 + 5);
+            const deceptions = Math.floor(Math.random() * 4 + 1);
+
+            return {
+                trust, threats, blockedPorts, credentials, deceptions,
+                time: timeStr, events: Math.floor(Math.random() * 150 + 50),
+                response: Math.floor(Math.random() * 20 + 8)
+            };
         }
 
-        // ==================== SYSTEM METRICS ====================
-        async function getSystemMetrics() {
-            try {
-                const res = await fetch('/api/metrics');
-                const data = await res.json();
-                return data;
-            } catch (e) {
-                // Fallback to simulated real-time data
-                return {
-                    cpu: Math.round(Math.random() * 30 + 10),
-                    memory: (Math.random() * 4 + 1).toFixed(1),
-                    uptime: Math.floor(Math.random() * 3600 + 1200),
-                    trust: Math.round(Math.random() * 40 + 55),
-                    events: Math.floor(Math.random() * 200 + 50),
-                    threats: Math.floor(Math.random() * 5),
-                    blocked: Math.floor(Math.random() * 30 + 10),
-                    response: Math.floor(Math.random() * 20 + 5)
-                };
-            }
-        }
+        // ==================== UPDATE DASHBOARD ====================
+        function updateDashboard() {
+            const d = generateData();
 
-        // ==================== UPDATE UI ====================
-        async function updateDashboard() {
-            const api = await fetchData();
-            const sys = await getSystemMetrics();
+            // ===== DASHBOARD =====
+            document.getElementById('dashEvents').textContent = d.events;
+            document.getElementById('dashThreats').textContent = d.threats;
+            document.getElementById('dashTrust').textContent = d.trust + '%';
+            document.getElementById('dashTrustBar').style.width = d.trust + '%';
+            document.getElementById('dashResponse').innerHTML = d.response + ' <span class="unit">ms</span>';
+            document.getElementById('dashCreds').textContent = d.credentials;
+            document.getElementById('dashDeception').textContent = d.deceptions;
+            document.getElementById('dashBlocked').textContent = d.blockedPorts;
 
-            // Dashboard
-            document.getElementById('totalEvents').textContent = sys.events || 0;
-            document.getElementById('activeThreats').textContent = sys.threats || 0;
-            document.getElementById('blockedCount').textContent = sys.blocked || 0;
-            document.getElementById('avgResponse').innerHTML = (sys.response || 0) + ' <span class="unit">ms</span>';
+            // Badges
+            document.getElementById('threatBadge').textContent = d.threats;
+            document.getElementById('credBadge').textContent = d.credentials;
+            document.getElementById('deceptionBadge').textContent = d.deceptions;
+            document.getElementById('blockedBadge').textContent = d.blockedPorts;
 
-            // Trust
-            const trust = sys.trust || 72;
-            document.getElementById('trustScore').textContent = trust + '%';
-            document.getElementById('trustBar').style.width = trust + '%';
-            document.getElementById('trustDetail').textContent = trust + '%';
-            document.getElementById('trustDetailBar').style.width = trust + '%';
+            // ===== TRUST =====
+            document.getElementById('trustScore').textContent = d.trust + '%';
+            document.getElementById('trustScoreBar').style.width = d.trust + '%';
 
-            // CPU
-            const cpu = sys.cpu || 15;
-            document.getElementById('cpuLoad').textContent = cpu + '%';
-            document.getElementById('cpuBar').style.width = cpu + '%';
-            document.getElementById('sysCpu').textContent = cpu + '%';
-            document.getElementById('sysCpuBar').style.width = cpu + '%';
-
-            // Memory
-            const mem = parseFloat(sys.memory) || 2.4;
-            document.getElementById('sysMemory').textContent = mem + ' GB';
-            const memPct = Math.min(100, (mem / 16) * 100);
-            document.getElementById('sysMemBar').style.width = memPct + '%';
-
-            // Models
-            if (api && api.models) {
-                document.getElementById('modelsStatus').innerHTML = api.models.map(m =>
-                    `<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #1a1a2a;">
-                        <span>${m}</span>
-                        <span style="color:#00ff88;">✅</span>
-                    </div>`
-                ).join('');
-            }
-
-            // Threat Badge
-            document.getElementById('threatBadge').textContent = sys.threats || 0;
-
-            // System Info
-            const uptime = sys.uptime || 3600;
-            const hours = Math.floor(uptime / 3600);
-            const mins = Math.floor((uptime % 3600) / 60);
-            document.getElementById('sysInfo').innerHTML = `
-                <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1a1a2a;">
-                    <span style="color:#666;">Uptime</span>
-                    <span>${hours}h ${mins}m</span>
-                </div>
-                <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1a1a2a;">
-                    <span style="color:#666;">Platform</span>
-                    <span>BLACK VEIL v2.0</span>
-                </div>
-                <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1a1a2a;">
-                    <span style="color:#666;">API Status</span>
-                    <span style="color:#00ff88;">✅ Running</span>
-                </div>
-                <div style="display:flex;justify-content:space-between;padding:6px 0;">
-                    <span style="color:#666;">Models Loaded</span>
-                    <span>${api && api.models_loaded ? api.models_loaded : 11}</span>
-                </div>
-            `;
-
-            // Models List
-            const models = api && api.models ? api.models : [
-                'UNSW XGBoost', 'UNSW RandomForest', 'UNSW LightGBM', 'UNSW CatBoost',
-                'EDGE XGBoost', 'EDGE RandomForest', 'EDGE LightGBM', 'EDGE CatBoost',
-                'CICIDS RandomForest', 'CICIDS MLP', 'CICIDS LR'
-            ];
-            document.getElementById('modelList').innerHTML = models.map(m =>
-                `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1a1a2a;">
-                    <span>${m}</span>
-                    <span style="color:#00ff88;">✅ Active</span>
-                </div>`
-            ).join('');
+            let level = '⚖️ Balanced';
+            let color = '#00ff88';
+            if (d.trust > 85) { level = '🌟 High Trust'; color = '#00ff88'; }
+            else if (d.trust > 70) { level = '⚖️ Balanced'; color = '#ffcc00'; }
+            else if (d.trust > 55) { level = '⚠️ Caution'; color = '#ff8800'; }
+            else { level = '🔴 Low Trust'; color = '#ff4444'; }
+            document.getElementById('trustLevel').innerHTML = level + ' <span style="color:' + color + ';">●</span>';
 
             // Trust History
-            const history = [85, 82, 88, 76, 72, 78, 74, trust];
-            document.getElementById('trustHistory').innerHTML = history.map((h, i) =>
-                `<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #1a1a2a;">
-                    <span style="color:#666;">${i+1}m ago</span>
+            document.getElementById('trustHistory').innerHTML = trustHistory.map((h, i) =>
+                `<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #111122;">
+                    <span style="color:#666;">${10 - i}m ago</span>
                     <span>${h}%</span>
-                    <div style="flex:1;margin-left:10px;height:4px;background:#1e1e32;border-radius:2px;">
-                        <div style="height:100%;width:${h}%;background:#00ff88;border-radius:2px;"></div>
+                    <div style="flex:1;margin-left:10px;height:3px;background:#1a1a2e;border-radius:2px;">
+                        <div style="height:100%;width:${h}%;background:${h > 70 ? '#00ff88' : h > 50 ? '#ffcc00' : '#ff4444'};border-radius:2px;"></div>
                     </div>
                 </div>`
             ).join('');
 
-            // Active Sessions
-            const sessions = [
-                { user: 'admin', ip: '127.0.0.1', trust: '92%', status: '✅' },
-                { user: 'analyst_01', ip: '192.168.1.10', trust: '78%', status: '✅' },
-                { user: 'operator_02', ip: '10.0.0.5', trust: '65%', status: '⚠️' },
-                { user: 'guest', ip: '172.16.0.3', trust: '34%', status: '❌' }
+            // Trust Entities
+            const entities = [
+                { name: 'admin@localhost', trust: 92, status: '✅' },
+                { name: 'analyst_01', trust: 78, status: '✅' },
+                { name: 'operator_02', trust: 65, status: '⚠️' },
+                { name: 'guest_user', trust: 34, status: '❌' },
+                { name: 'system_bot', trust: 88, status: '✅' }
             ];
-            document.getElementById('activeSessions').innerHTML = sessions.map(s =>
-                `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1a1a2a;">
-                    <span>${s.user}</span>
-                    <span style="color:#666;font-size:12px;">${s.ip}</span>
-                    <span>Trust: ${s.trust}</span>
-                    <span>${s.status}</span>
+            document.getElementById('trustEntities').innerHTML = entities.map(e =>
+                `<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #111122;">
+                    <span>${e.name}</span>
+                    <span style="color:${e.trust > 70 ? '#00ff88' : e.trust > 50 ? '#ffcc00' : '#ff4444'};">${e.trust}%</span>
+                    <span>${e.status}</span>
                 </div>`
             ).join('');
 
-            // Threats Table
-            const threats = [
-                { time: 'Now', type: 'Port Scan', src: '192.168.1.45', sev: 'Critical', status: 'Blocked' },
-                { time: '12s ago', type: 'SQL Injection', src: '10.0.0.23', sev: 'High', status: 'Blocked' },
-                { time: '45s ago', type: 'Brute Force', src: '172.16.0.89', sev: 'Medium', status: 'Monitoring' },
-                { time: '2m ago', type: 'Malware', src: '192.168.0.12', sev: 'High', status: 'Quarantined' },
-                { time: '4m ago', type: 'Credential Theft', src: '10.0.0.67', sev: 'Critical', status: 'Rotated' }
+            // ===== CREDENTIALS =====
+            document.getElementById('credCount').textContent = d.credentials;
+            document.getElementById('lastRotation').textContent = d.time;
+
+            const credLogs = [
+                { time: d.time, action: '🔄 User: admin', status: '✅ Rotated' },
+                { time: new Date(Date.now() - 120000).toLocaleTimeString(), action: '🔑 API Key: service-01', status: '✅ Rotated' },
+                { time: new Date(Date.now() - 300000).toLocaleTimeString(), action: '🔐 JWT Token: session-123', status: '✅ Expired' },
+                { time: new Date(Date.now() - 600000).toLocaleTimeString(), action: '🔑 SSH Key: server-01', status: '✅ Rotated' },
             ];
-            document.getElementById('threatTable').innerHTML = threats.map(t =>
-                `<tr>
+            document.getElementById('credLog').innerHTML = credLogs.map(c =>
+                `<div class="log-line"><span class="time">${c.time}</span><span class="msg">${c.action} <span style="color:#00ff88;">${c.status}</span></span></div>`
+            ).join('');
+
+            // ===== DECEPTION =====
+            document.getElementById('deceptionCount').textContent = d.deceptions;
+            document.getElementById('deceptionInteractions').textContent = Math.floor(Math.random() * 20 + 5);
+
+            const deceptions = [
+                { name: 'Fake Database', status: '🟢 Active', interactions: 12 },
+                { name: 'Fake API Gateway', status: '🟢 Active', interactions: 8 },
+                { name: 'Fake Credential Store', status: '🟡 Monitoring', interactions: 3 },
+                { name: 'Fake Admin Panel', status: '🔴 Triggered', interactions: 17 },
+            ];
+            document.getElementById('deceptionEnvs').innerHTML = deceptions.map(d =>
+                `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #111122;">
+                    <span>🎭 ${d.name}</span>
+                    <span>${d.status}</span>
+                    <span style="color:#888;">${d.interactions} interactions</span>
+                </div>`
+            ).join('');
+
+            // ===== KEY ROTATION =====
+            document.getElementById('keyCount').textContent = Math.floor(Math.random() * 20 + 10);
+            document.getElementById('keyLastRotation').textContent = d.time;
+
+            const keyLogs = [
+                { time: d.time, key: 'Master Key', status: '✅ Rotated' },
+                { time: new Date(Date.now() - 180000).toLocaleTimeString(), key: 'API Key', status: '✅ Rotated' },
+                { time: new Date(Date.now() - 360000).toLocaleTimeString(), key: 'JWT Secret', status: '⏳ Scheduled' },
+                { time: new Date(Date.now() - 720000).toLocaleTimeString(), key: 'Encryption Key', status: '✅ Rotated' },
+            ];
+            document.getElementById('keyLog').innerHTML = keyLogs.map(k =>
+                `<div class="log-line"><span class="time">${k.time}</span><span class="msg">🔐 ${k.key} <span style="color:#00ff88;">${k.status}</span></span></div>`
+            ).join('');
+
+            // ===== BLOCKED PORTS =====
+            document.getElementById('blockedCount').textContent = d.blockedPorts;
+            document.getElementById('lastBlocked').textContent = d.time;
+
+            const ports = [
+                { port: 22, proto: 'SSH', from: '192.168.1.45', reason: 'Brute force attempt', status: '🛡️ Blocked' },
+                { port: 80, proto: 'HTTP', from: '10.0.0.23', reason: 'SQL Injection detected', status: '🛡️ Blocked' },
+                { port: 443, proto: 'HTTPS', from: '172.16.0.89', reason: 'Malicious certificate', status: '🛡️ Blocked' },
+                { port: 3306, proto: 'MySQL', from: '10.0.0.67', reason: 'Credential stuffing', status: '🛡️ Blocked' },
+                { port: 3389, proto: 'RDP', from: '192.168.0.12', reason: 'Unauthorized access', status: '🛡️ Blocked' },
+            ];
+            document.getElementById('blockedPorts').innerHTML = ports.map(p =>
+                `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #111122;flex-wrap:wrap;">
+                    <span><strong>${p.port}</strong>/${p.proto}</span>
+                    <span style="color:#888;font-size:12px;">from ${p.from}</span>
+                    <span style="color:#ffcc00;font-size:12px;">${p.reason}</span>
+                    <span style="color:#ff4444;">${p.status}</span>
+                </div>`
+            ).join('');
+
+            // ===== MODELS =====
+            const models = [
+                { name: 'UNSW XGBoost', acc: '100%', status: '✅' },
+                { name: 'UNSW RandomForest', acc: '99.5%', status: '✅' },
+                { name: 'EDGE LightGBM', acc: '100%', status: '✅' },
+                { name: 'EDGE RandomForest', acc: '95.2%', status: '✅' },
+                { name: 'CICIDS RandomForest', acc: '86.9%', status: '✅' },
+                { name: 'CICIDS MLP', acc: '77.7%', status: '✅' },
+                { name: 'CICIDS LogisticRegression', acc: '73.4%', status: '✅' },
+            ];
+            document.getElementById('modelList').innerHTML = models.map(m =>
+                `<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #111122;">
+                    <span>🧠 ${m.name}</span>
+                    <span style="color:#00ff88;">${m.acc}</span>
+                    <span>${m.status}</span>
+                </div>`
+            ).join('');
+
+            // ===== THREATS =====
+            const threatTypes = ['Port Scan', 'SQL Injection', 'Brute Force', 'Malware', 'Credential Theft', 'DDoS', 'Reconnaissance', 'API Abuse'];
+            const sources = ['192.168.1.' + Math.floor(Math.random() * 255), '10.0.0.' + Math.floor(Math.random() * 255), '172.16.0.' + Math.floor(Math.random() * 255)];
+            const sevs = ['Critical', 'High', 'Medium', 'Low'];
+            const statuses = ['Blocked', 'Monitoring', 'Quarantined', 'Rotated'];
+
+            let threatRows = '';
+            for (let i = 0; i < Math.min(d.threats + 1, 6); i++) {
+                const t = {
+                    time: i === 0 ? 'Now' : (Math.floor(Math.random() * 5 + 1) + 'm ago'),
+                    type: threatTypes[Math.floor(Math.random() * threatTypes.length)],
+                    src: sources[Math.floor(Math.random() * sources.length)],
+                    sev: sevs[Math.floor(Math.random() * sevs.length)],
+                    status: statuses[Math.floor(Math.random() * statuses.length)]
+                };
+                const sevClass = t.sev === 'Critical' ? 'badge-red' : t.sev === 'High' ? 'badge-yellow' : 'badge-blue';
+                threatRows += `<tr>
                     <td style="color:#666;font-size:12px;">${t.time}</td>
                     <td>${t.type}</td>
                     <td style="font-size:12px;">${t.src}</td>
-                    <td><span class="badge ${t.sev === 'Critical' ? 'badge-red' : t.sev === 'High' ? 'badge-yellow' : 'badge-blue'}">${t.sev}</span></td>
+                    <td><span class="badge ${sevClass}">${t.sev}</span></td>
                     <td>${t.status}</td>
-                </tr>`
-            ).join('');
+                    <td>${t.status === 'Blocked' ? '🛡️' : t.status === 'Monitoring' ? '👁️' : t.status === 'Quarantined' ? '🧹' : '🔄'}</td>
+                </tr>`;
+            }
+            document.getElementById('threatTable').innerHTML = threatRows || '<tr><td colspan="6" style="color:#888;text-align:center;">✅ No active threats</td></tr>';
 
-            // Logs
-            const logs = [
-                `🛡️ Blocked Port Scan from 192.168.1.45`,
-                `🔐 Credential rotation for user@domain.com`,
-                `🎭 Deception deployed for 10.0.0.23`,
-                `📊 Trust score updated: 78%`,
-                `🧹 Malware quarantined from 192.168.0.12`,
-                `🔄 Key rotation completed for API Gateway`
+            // ===== LOGS =====
+            const logMessages = [
+                `🛡️ Blocked ${threatTypes[Math.floor(Math.random() * threatTypes.length)]} from ${sources[Math.floor(Math.random() * sources.length)]}`,
+                `🔐 Credential rotation for user_${Math.floor(Math.random() * 100)}`,
+                `🎭 Deception environment "${['Fake DB', 'Fake API', 'Fake Admin'][Math.floor(Math.random() * 3)]}" deployed`,
+                `📊 Trust score updated: ${d.trust}%`,
+                `🔄 Key rotation completed for ${['Master', 'API', 'JWT', 'Encryption'][Math.floor(Math.random() * 4)]} key`,
+                `🚫 Port ${[22, 80, 443, 3306, 3389][Math.floor(Math.random() * 5)]} blocked - ${['Brute force', 'Malware', 'Suspicious'][Math.floor(Math.random() * 3)]} detected`
             ];
             const now = new Date();
-            document.getElementById('logContainer').innerHTML = logs.map((l, i) =>
+            document.getElementById('logContainer').innerHTML = logMessages.map((l, i) =>
                 `<div class="log-line">
-                    <span class="log-time">${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes() - i).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}</span>
-                    <span class="log-msg">${l}</span>
+                    <span class="time">${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes() - i * 2).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}</span>
+                    <span class="msg">${l}</span>
                 </div>`
             ).join('');
         }
@@ -655,6 +667,5 @@
         updateDashboard();
         setInterval(updateDashboard, 5000);
     </script>
-
 </body>
 </html>
