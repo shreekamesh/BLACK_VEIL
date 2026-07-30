@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLACK VEIL - Live Monitoring</title>
     <style>
-        /* ==================== BASE ==================== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,139 +15,173 @@
             overflow: hidden;
         }
 
-        /* ==================== SIDEBAR ==================== */
+        /* ===== SIDEBAR ===== */
         .sidebar {
-            width: 220px;
+            width: 200px;
             background: #0e0e1a;
             border-right: 1px solid #1a1a2e;
-            padding: 15px 0;
+            padding: 12px 0;
             display: flex;
             flex-direction: column;
             flex-shrink: 0;
             height: 100vh;
             overflow-y: auto;
         }
-
         .sidebar-logo {
             text-align: center;
-            padding: 0 15px 20px;
+            padding: 0 10px 15px;
             border-bottom: 1px solid #1a1a2e;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
-        .sidebar-logo h2 {
-            font-size: 18px;
-            background: linear-gradient(135deg, #00ff88, #00ccff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .sidebar-logo small {
-            font-size: 10px;
-            color: #555;
-            -webkit-text-fill-color: #555;
-        }
+        .sidebar-logo h2 { font-size: 16px; background: linear-gradient(135deg, #00ff88, #00ccff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .sidebar-logo small { font-size: 9px; color: #555; -webkit-text-fill-color: #555; }
 
         .nav-item {
-            padding: 10px 20px;
+            padding: 8px 16px;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 13px;
+            gap: 8px;
+            font-size: 12px;
             color: #777;
             transition: all 0.3s;
             border-left: 3px solid transparent;
         }
         .nav-item:hover { background: #14142a; color: #fff; }
         .nav-item.active { color: #00ff88; background: #14142a; border-left-color: #00ff88; }
-        .nav-item .icon { font-size: 16px; width: 22px; }
+        .nav-item .icon { font-size: 14px; width: 20px; }
         .nav-item .badge {
             margin-left: auto;
             background: #ff4444;
             color: #fff;
-            font-size: 9px;
-            padding: 1px 8px;
+            font-size: 8px;
+            padding: 1px 7px;
             border-radius: 10px;
         }
         .nav-item .badge.green { background: #00ff88; color: #000; }
         .nav-item .badge.blue { background: #00ccff; color: #000; }
 
-        /* ==================== MAIN ==================== */
-        .main-content {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            height: 100vh;
-        }
+        /* ===== MAIN ===== */
+        .main-content { flex: 1; padding: 15px; overflow-y: auto; height: 100vh; }
 
         .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0 20px;
+            padding: 8px 0 15px;
             border-bottom: 1px solid #1a1a2e;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-        .top-bar h1 { font-size: 20px; font-weight: 400; }
+        .top-bar h1 { font-size: 18px; font-weight: 400; }
         .top-bar h1 span { color: #00ff88; }
-        .top-bar .status {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 13px;
-        }
-        .status-dot {
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            background: #00ff88;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-        .top-bar .time { color: #666; font-family: monospace; font-size: 13px; }
+        .top-bar .status { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+        .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #00ff88; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+        .top-bar .time { color: #666; font-family: monospace; font-size: 12px; }
 
-        /* ==================== CARDS ==================== */
+        /* ===== CARDS ===== */
         .card {
             background: #111122;
             border: 1px solid #1a1a2e;
-            border-radius: 10px;
-            padding: 16px 20px;
-            margin-bottom: 15px;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 12px;
         }
-        .card-title {
-            font-size: 12px;
-            color: #666;
+        .card-title { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+        .card-value { font-size: 22px; font-weight: 600; color: #fff; }
+        .card-value .unit { font-size: 12px; color: #666; font-weight: 400; }
+
+        /* ===== GRID ===== */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+        .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
+
+        /* ===== PROGRESS ===== */
+        .progress { width: 100%; height: 3px; background: #1a1a2e; border-radius: 2px; margin-top: 5px; overflow: hidden; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, #00ff88, #00ccff); border-radius: 2px; transition: width 0.5s; }
+
+        /* ===== FLOW DIAGRAM ===== */
+        .flow-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 15px 5px;
+            flex-wrap: wrap;
+            background: #0a0a15;
+            border-radius: 8px;
+            border: 1px solid #1a1a2e;
+            min-height: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flow-node {
+            background: #151530;
+            border: 1px solid #2a2a5a;
+            border-radius: 8px;
+            padding: 8px 12px;
+            text-align: center;
+            min-width: 65px;
+            font-size: 10px;
+            color: #aaa;
+            transition: all 0.5s;
+            position: relative;
+        }
+        .flow-node .icon { font-size: 16px; display: block; margin-bottom: 2px; }
+        .flow-node .label { font-size: 8px; text-transform: uppercase; letter-spacing: 0.3px; }
+        .flow-node .value { font-size: 12px; font-weight: 600; color: #00ff88; display: block; margin-top: 2px; }
+
+        .flow-node.active {
+            border-color: #00ff88;
+            box-shadow: 0 0 20px rgba(0,255,136,0.15);
+            background: #1a2a1a;
+        }
+        .flow-node.warning {
+            border-color: #ffcc00;
+            box-shadow: 0 0 20px rgba(255,204,0,0.15);
+            background: #2a2a1a;
+        }
+        .flow-node.danger {
+            border-color: #ff4444;
+            box-shadow: 0 0 20px rgba(255,68,68,0.15);
+            background: #2a1a1a;
+        }
+
+        .flow-arrow {
+            color: #2a2a5a;
+            font-size: 18px;
+            animation: arrowPulse 1.5s infinite;
+            min-width: 20px;
+            text-align: center;
+        }
+        .flow-arrow.active { color: #00ff88; animation: arrowPulse 0.8s infinite; }
+        .flow-arrow.warning { color: #ffcc00; }
+        .flow-arrow.danger { color: #ff4444; }
+
+        @keyframes arrowPulse {
+            0%,100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .flow-label {
+            position: absolute;
+            font-size: 7px;
+            color: #444;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 10px;
+            background: #0a0a15;
+            padding: 0 4px;
         }
-        .card-value {
-            font-size: 26px;
-            font-weight: 600;
-            color: #fff;
-        }
-        .card-value .unit { font-size: 14px; color: #666; font-weight: 400; }
 
-        /* ==================== GRID ==================== */
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
-        .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 15px; }
-
-        /* ==================== PROGRESS ==================== */
-        .progress { width: 100%; height: 4px; background: #1a1a2e; border-radius: 2px; margin-top: 8px; overflow: hidden; }
-        .progress-bar { height: 100%; background: linear-gradient(90deg, #00ff88, #00ccff); border-radius: 2px; transition: width 0.5s; }
-        .progress-bar.red { background: linear-gradient(90deg, #ff4444, #ff8800); }
-        .progress-bar.yellow { background: linear-gradient(90deg, #ffcc00, #ff8800); }
-
-        /* ==================== TABLE ==================== */
-        table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        th { text-align: left; padding: 8px 10px; color: #666; font-weight: 500; border-bottom: 1px solid #1a1a2e; font-size: 11px; text-transform: uppercase; }
-        td { padding: 8px 10px; border-bottom: 1px solid #151525; }
+        /* ===== TABLE ===== */
+        table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        th { text-align: left; padding: 5px 8px; color: #666; font-weight: 500; border-bottom: 1px solid #1a1a2e; font-size: 9px; text-transform: uppercase; }
+        td { padding: 5px 8px; border-bottom: 1px solid #151525; }
         .badge {
-            padding: 2px 10px;
-            border-radius: 12px;
-            font-size: 10px;
+            padding: 1px 8px;
+            border-radius: 10px;
+            font-size: 9px;
             font-weight: 600;
             display: inline-block;
         }
@@ -158,99 +191,80 @@
         .badge-blue { background: #00ccff22; color: #00ccff; }
         .badge-gray { background: #44446622; color: #888; }
 
-        /* ==================== LOG LINE ==================== */
+        /* ===== LOG ===== */
         .log-line {
             font-family: monospace;
-            font-size: 12px;
-            padding: 4px 0;
+            font-size: 11px;
+            padding: 3px 0;
             border-bottom: 1px solid #111122;
             display: flex;
-            gap: 15px;
+            gap: 10px;
         }
-        .log-line .time { color: #666; min-width: 60px; }
+        .log-line .time { color: #666; min-width: 55px; font-size: 10px; }
         .log-line .msg { color: #ccc; }
-        .log-line .msg .hl { color: #00ff88; }
-        .log-line .msg .hl-red { color: #ff4444; }
-        .log-line .msg .hl-yellow { color: #ffcc00; }
 
-        /* ==================== SCROLL ==================== */
-        ::-webkit-scrollbar { width: 4px; }
+        /* ===== SCROLL ===== */
+        ::-webkit-scrollbar { width: 3px; }
         ::-webkit-scrollbar-track { background: #0a0a12; }
-        ::-webkit-scrollbar-thumb { background: #00ff88; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #00ff88; border-radius: 3px; }
 
-        /* ==================== PAGES ==================== */
         .page { display: none; }
         .page.active { display: block; }
 
-        /* ==================== RESPONSIVE ==================== */
         @media (max-width: 1024px) {
             .grid-4 { grid-template-columns: 1fr 1fr; }
             .grid-3 { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 768px) {
-            .sidebar { width: 60px; }
+            .sidebar { width: 55px; }
             .sidebar-logo h2, .sidebar-logo small, .nav-item span:not(.icon) { display: none; }
-            .nav-item { padding: 12px 16px; justify-content: center; }
+            .nav-item { padding: 10px 12px; justify-content: center; }
             .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
-            .main-content { padding: 10px; }
+            .flow-container { flex-wrap: wrap; }
+            .flow-node { min-width: 50px; padding: 5px 8px; }
+            .flow-arrow { font-size: 14px; min-width: 12px; }
         }
 
-        .status-row {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .status-item {
-            font-size: 12px;
-            color: #888;
-        }
+        /* ===== STATUS ROW ===== */
+        .status-row { display: flex; gap: 12px; flex-wrap: wrap; }
+        .status-item { font-size: 11px; color: #888; }
         .status-item .val { color: #fff; font-weight: 600; }
+
+        /* ===== FLOW ANIMATION DOTS ===== */
+        .flow-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            margin: 0 2px;
+            background: #2a2a5a;
+            transition: all 0.3s;
+        }
+        .flow-dot.active { background: #00ff88; box-shadow: 0 0 10px rgba(0,255,136,0.5); }
+        .flow-dot.warning { background: #ffcc00; box-shadow: 0 0 10px rgba(255,204,0,0.5); }
+        .flow-dot.danger { background: #ff4444; box-shadow: 0 0 10px rgba(255,68,68,0.5); }
     </style>
 </head>
 <body>
 
-    <!-- ==================== SIDEBAR ==================== -->
+    <!-- ===== SIDEBAR ===== -->
     <nav class="sidebar">
         <div class="sidebar-logo">
             <h2>🛡️ BLACK VEIL</h2>
-            <small>v2.0 · Live Monitor</small>
+            <small>v2.0 · Live</small>
         </div>
-
-        <div class="nav-item active" onclick="showPage('dashboard')">
-            <span class="icon">📊</span><span>Dashboard</span>
-        </div>
-        <div class="nav-item" onclick="showPage('threats')">
-            <span class="icon">🚨</span><span>Threats</span>
-            <span class="badge" id="threatBadge">0</span>
-        </div>
-        <div class="nav-item" onclick="showPage('trust')">
-            <span class="icon">🔐</span><span>Trust Score</span>
-        </div>
-        <div class="nav-item" onclick="showPage('credentials')">
-            <span class="icon">🔑</span><span>Credentials</span>
-            <span class="badge green" id="credBadge">0</span>
-        </div>
-        <div class="nav-item" onclick="showPage('deception')">
-            <span class="icon">🎭</span><span>Deception</span>
-            <span class="badge blue" id="deceptionBadge">0</span>
-        </div>
-        <div class="nav-item" onclick="showPage('keys')">
-            <span class="icon">🔐</span><span>Key Rotation</span>
-        </div>
-        <div class="nav-item" onclick="showPage('blocked')">
-            <span class="icon">🚫</span><span>Blocked Ports</span>
-            <span class="badge" id="blockedBadge">0</span>
-        </div>
-        <div class="nav-item" onclick="showPage('models')">
-            <span class="icon">🧠</span><span>Models</span>
-        </div>
-        <div class="nav-item" onclick="showPage('logs')">
-            <span class="icon">📋</span><span>Logs</span>
-        </div>
+        <div class="nav-item active" onclick="showPage('dashboard')"><span class="icon">📊</span><span>Dashboard</span></div>
+        <div class="nav-item" onclick="showPage('flow')"><span class="icon">🌊</span><span>Data Flow</span></div>
+        <div class="nav-item" onclick="showPage('threats')"><span class="icon">🚨</span><span>Threats</span><span class="badge" id="threatBadge">0</span></div>
+        <div class="nav-item" onclick="showPage('trust')"><span class="icon">🔐</span><span>Trust</span></div>
+        <div class="nav-item" onclick="showPage('credentials')"><span class="icon">🔑</span><span>Credentials</span><span class="badge green" id="credBadge">0</span></div>
+        <div class="nav-item" onclick="showPage('deception')"><span class="icon">🎭</span><span>Deception</span><span class="badge blue" id="deceptionBadge">0</span></div>
+        <div class="nav-item" onclick="showPage('keys')"><span class="icon">🔐</span><span>Key Rotation</span></div>
+        <div class="nav-item" onclick="showPage('blocked')"><span class="icon">🚫</span><span>Blocked Ports</span><span class="badge" id="blockedBadge">0</span></div>
+        <div class="nav-item" onclick="showPage('logs')"><span class="icon">📋</span><span>Logs</span></div>
     </nav>
 
-    <!-- ==================== MAIN ==================== -->
+    <!-- ===== MAIN ===== -->
     <div class="main-content">
 
         <div class="top-bar">
@@ -262,224 +276,230 @@
             </div>
         </div>
 
-        <!-- ==================== PAGE: DASHBOARD ==================== -->
+        <!-- ===== PAGE: DASHBOARD ===== -->
         <div id="page-dashboard" class="page active">
+
+            <!-- Stats -->
             <div class="grid-4">
-                <div class="card">
-                    <div class="card-title">🛡️ Events</div>
-                    <div class="card-value" id="dashEvents">0</div>
-                </div>
-                <div class="card">
-                    <div class="card-title">⚠️ Active Threats</div>
-                    <div class="card-value" id="dashThreats" style="color:#ff4444;">0</div>
-                </div>
-                <div class="card">
-                    <div class="card-title">🔐 Trust Score</div>
-                    <div class="card-value" id="dashTrust">0%</div>
-                    <div class="progress"><div class="progress-bar" id="dashTrustBar" style="width:0%"></div></div>
-                </div>
-                <div class="card">
-                    <div class="card-title">⚡ Response</div>
-                    <div class="card-value" id="dashResponse">0 <span class="unit">ms</span></div>
-                </div>
+                <div class="card"><div class="card-title">🛡️ Events</div><div class="card-value" id="dashEvents">0</div></div>
+                <div class="card"><div class="card-title">⚠️ Threats</div><div class="card-value" id="dashThreats" style="color:#ff4444;">0</div></div>
+                <div class="card"><div class="card-title">🔐 Trust</div><div class="card-value" id="dashTrust">0%</div><div class="progress"><div class="progress-bar" id="dashTrustBar" style="width:0%"></div></div></div>
+                <div class="card"><div class="card-title">⚡ Response</div><div class="card-value" id="dashResponse">0 <span class="unit">ms</span></div></div>
             </div>
 
-            <div class="grid-3">
-                <div class="card">
-                    <div class="card-title">🔑 Active Credentials</div>
-                    <div class="card-value" id="dashCreds">0</div>
-                </div>
-                <div class="card">
-                    <div class="card-title">🎭 Active Deceptions</div>
-                    <div class="card-value" id="dashDeception">0</div>
-                </div>
-                <div class="card">
-                    <div class="card-title">🚫 Blocked Ports</div>
-                    <div class="card-value" id="dashBlocked">0</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ==================== PAGE: THREATS ==================== -->
-        <div id="page-threats" class="page">
+            <!-- Live Data Flow -->
             <div class="card">
-                <div class="card-title">🚨 Live Threats</div>
-                <table><thead><tr><th>Time</th><th>Type</th><th>Source</th><th>Severity</th><th>Status</th><th>Action</th></tr></thead>
-                <tbody id="threatTable"><tr><td colspan="6" style="color:#666;text-align:center;">Loading...</td></tr></tbody></table>
-            </div>
-        </div>
+                <div class="card-title">🌊 Live Data Flow — Traditional Relay Switching View</div>
+                <div class="flow-container" id="flowContainer">
+                    <div class="flow-node active" id="node-incoming">
+                        <span class="icon">📡</span>
+                        <span class="label">Incoming</span>
+                        <span class="value" id="flowIncoming">0</span>
+                    </div>
+                    <span class="flow-arrow active" id="arrow1">▶</span>
 
-        <!-- ==================== PAGE: TRUST ==================== -->
-        <div id="page-trust" class="page">
-            <div class="grid-2">
-                <div class="card">
-                    <div class="card-title">🔐 Current Trust Score</div>
-                    <div class="card-value" id="trustScore">0%</div>
-                    <div class="progress"><div class="progress-bar" id="trustScoreBar" style="width:0%"></div></div>
-                    <div style="margin-top:10px;font-size:12px;color:#666;">
-                        <span id="trustLevel">⚖️ Balanced</span>
+                    <div class="flow-node" id="node-threat">
+                        <span class="icon">🔍</span>
+                        <span class="label">Threat Scan</span>
+                        <span class="value" id="flowThreat">0</span>
+                    </div>
+                    <span class="flow-arrow" id="arrow2">▶</span>
+
+                    <div class="flow-node" id="node-trust">
+                        <span class="icon">🔐</span>
+                        <span class="label">Trust TTRM</span>
+                        <span class="value" id="flowTrust">0%</span>
+                    </div>
+                    <span class="flow-arrow" id="arrow3">▶</span>
+
+                    <div class="flow-node" id="node-credential">
+                        <span class="icon">🔑</span>
+                        <span class="label">Credential DCMM</span>
+                        <span class="value" id="flowCredential">0</span>
+                    </div>
+                    <span class="flow-arrow" id="arrow4">▶</span>
+
+                    <div class="flow-node" id="node-deception">
+                        <span class="icon">🎭</span>
+                        <span class="label">Deception</span>
+                        <span class="value" id="flowDeception">0</span>
+                    </div>
+                    <span class="flow-arrow" id="arrow5">▶</span>
+
+                    <div class="flow-node" id="node-acdo">
+                        <span class="icon">🧠</span>
+                        <span class="label">ACDO Decision</span>
+                        <span class="value" id="flowACDO">⏳</span>
+                    </div>
+                    <span class="flow-arrow" id="arrow6">▶</span>
+
+                    <div class="flow-node" id="node-response">
+                        <span class="icon">⚡</span>
+                        <span class="label">Response</span>
+                        <span class="value" id="flowResponse">0</span>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-title">📈 Trust History (Last 10 mins)</div>
-                    <div id="trustHistory">Loading...</div>
+                <div style="display:flex; justify-content:space-between; margin-top:8px; font-size:9px; color:#444; flex-wrap:wrap;">
+                    <span>🟢 Active Path</span>
+                    <span>🟡 Warning</span>
+                    <span>🔴 Blocked</span>
+                    <span>⏱️ <span id="flowLatency">0</span>ms total</span>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-title">👤 Trusted Entities</div>
-                <div id="trustEntities">Loading...</div>
+
+            <!-- Quick Stats -->
+            <div class="grid-3">
+                <div class="card"><div class="card-title">🔑 Active Credentials</div><div class="card-value" id="dashCreds">0</div></div>
+                <div class="card"><div class="card-title">🎭 Active Deceptions</div><div class="card-value" id="dashDeception">0</div></div>
+                <div class="card"><div class="card-title">🚫 Blocked Ports</div><div class="card-value" id="dashBlocked">0</div></div>
             </div>
         </div>
 
-        <!-- ==================== PAGE: CREDENTIALS ==================== -->
+        <!-- ===== PAGE: FLOW ===== -->
+        <div id="page-flow" class="page">
+            <div class="card">
+                <div class="card-title">🌊 BLACK VEIL Data Flow — Traditional Relay Switching View</div>
+                <div class="flow-container" style="min-height:120px; flex-wrap:wrap; justify-content:center;" id="flowContainerFull">
+                    <!-- Nodes will be populated by JS -->
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="card"><div class="card-title">📊 Flow Statistics</div><div id="flowStats">Loading...</div></div>
+                <div class="card"><div class="card-title">⏱️ Latency Breakdown</div><div id="flowLatencyBreakdown">Loading...</div></div>
+            </div>
+        </div>
+
+        <!-- ===== OTHER PAGES ===== -->
+        <div id="page-threats" class="page"><div class="card"><div class="card-title">🚨 Live Threats</div><table><thead><tr><th>Time</th><th>Type</th><th>Source</th><th>Severity</th><th>Status</th></tr></thead><tbody id="threatTable"><tr><td colspan="5" style="color:#666;text-align:center;">Loading...</td></tr></tbody></table></div></div>
+
+        <div id="page-trust" class="page">
+            <div class="grid-2">
+                <div class="card"><div class="card-title">🔐 Trust Score</div><div class="card-value" id="trustScore">0%</div><div class="progress"><div class="progress-bar" id="trustScoreBar" style="width:0%"></div></div></div>
+                <div class="card"><div class="card-title">📈 History</div><div id="trustHistory">Loading...</div></div>
+            </div>
+            <div class="card"><div class="card-title">👤 Trusted Entities</div><div id="trustEntities">Loading...</div></div>
+        </div>
+
         <div id="page-credentials" class="page">
-            <div class="grid-2">
-                <div class="card">
-                    <div class="card-title">🔑 Active Credentials</div>
-                    <div class="card-value" id="credCount">0</div>
-                </div>
-                <div class="card">
-                    <div class="card-title">🔄 Last Rotation</div>
-                    <div class="card-value" id="lastRotation" style="font-size:18px;">--</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-title">📋 Credential Rotation Log</div>
-                <div id="credLog">Loading...</div>
-            </div>
+            <div class="grid-2"><div class="card"><div class="card-title">🔑 Active Credentials</div><div class="card-value" id="credCount">0</div></div><div class="card"><div class="card-title">🔄 Last Rotation</div><div class="card-value" id="lastRotation" style="font-size:18px;">--</div></div></div>
+            <div class="card"><div class="card-title">📋 Rotation Log</div><div id="credLog">Loading...</div></div>
         </div>
 
-        <!-- ==================== PAGE: DECEPTION ==================== -->
         <div id="page-deception" class="page">
-            <div class="grid-2">
-                <div class="card">
-                    <div class="card-title">🎭 Active Deceptions</div>
-                    <div class="card-value" id="deceptionCount">0</div>
-                </div>
-                <div class="card">
-                    <div class="card-title">🎯 Attacker Interactions</div>
-                    <div class="card-value" id="deceptionInteractions">0</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-title">🎭 Deception Environments</div>
-                <div id="deceptionEnvs">Loading...</div>
-            </div>
+            <div class="grid-2"><div class="card"><div class="card-title">🎭 Active Deceptions</div><div class="card-value" id="deceptionCount">0</div></div><div class="card"><div class="card-title">🎯 Interactions</div><div class="card-value" id="deceptionInteractions">0</div></div></div>
+            <div class="card"><div class="card-title">🎭 Deception Environments</div><div id="deceptionEnvs">Loading...</div></div>
         </div>
 
-        <!-- ==================== PAGE: KEY ROTATION ==================== -->
         <div id="page-keys" class="page">
-            <div class="grid-2">
-                <div class="card">
-                    <div class="card-title">🔐 Active Keys</div>
-                    <div class="card-value" id="keyCount">0</div>
-                </div>
-                <div class="card">
-                    <div class="card-title">🔄 Last Rotation</div>
-                    <div class="card-value" id="keyLastRotation" style="font-size:18px;">--</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-title">📋 Key Rotation Log</div>
-                <div id="keyLog">Loading...</div>
-            </div>
+            <div class="grid-2"><div class="card"><div class="card-title">🔐 Active Keys</div><div class="card-value" id="keyCount">0</div></div><div class="card"><div class="card-title">🔄 Last Rotation</div><div class="card-value" id="keyLastRotation" style="font-size:18px;">--</div></div></div>
+            <div class="card"><div class="card-title">📋 Key Rotation Log</div><div id="keyLog">Loading...</div></div>
         </div>
 
-        <!-- ==================== PAGE: BLOCKED PORTS ==================== -->
         <div id="page-blocked" class="page">
-            <div class="grid-2">
-                <div class="card">
-                    <div class="card-title">🚫 Total Blocked Ports</div>
-                    <div class="card-value" id="blockedCount">0</div>
-                </div>
-                <div class="card">
-                    <div class="card-title">🛡️ Last Blocked</div>
-                    <div class="card-value" id="lastBlocked" style="font-size:18px;">--</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-title">📋 Blocked Ports & Explanations</div>
-                <div id="blockedPorts">Loading...</div>
-            </div>
+            <div class="grid-2"><div class="card"><div class="card-title">🚫 Blocked Ports</div><div class="card-value" id="blockedCount">0</div></div><div class="card"><div class="card-title">🛡️ Last Blocked</div><div class="card-value" id="lastBlocked" style="font-size:18px;">--</div></div></div>
+            <div class="card"><div class="card-title">📋 Blocked Ports & Explanations</div><div id="blockedPorts">Loading...</div></div>
         </div>
 
-        <!-- ==================== PAGE: MODELS ==================== -->
-        <div id="page-models" class="page">
-            <div class="card">
-                <div class="card-title">🧠 Deployed Models</div>
-                <div id="modelList">Loading...</div>
-            </div>
-        </div>
-
-        <!-- ==================== PAGE: LOGS ==================== -->
-        <div id="page-logs" class="page">
-            <div class="card">
-                <div class="card-title">📋 System Activity Log</div>
-                <div id="logContainer">Loading...</div>
-            </div>
-        </div>
+        <div id="page-logs" class="page"><div class="card"><div class="card-title">📋 Activity Log</div><div id="logContainer">Loading...</div></div></div>
 
     </div>
 
     <script>
-        // ==================== PAGE SWITCH ====================
+        // ===== PAGE SWITCH =====
         function showPage(page) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
             document.getElementById('page-' + page).classList.add('active');
             document.querySelector(`.nav-item[onclick*="${page}"]`).classList.add('active');
 
-            const names = {
-                dashboard: 'Dashboard', threats: 'Threats', trust: 'Trust Score',
-                credentials: 'Credentials', deception: 'Deception', keys: 'Key Rotation',
-                blocked: 'Blocked Ports', models: 'Models', logs: 'Logs'
-            };
-            const icons = {
-                dashboard: '📊', threats: '🚨', trust: '🔐',
-                credentials: '🔑', deception: '🎭', keys: '🔐',
-                blocked: '🚫', models: '🧠', logs: '📋'
-            };
+            const names = { dashboard: 'Dashboard', flow: 'Data Flow', threats: 'Threats', trust: 'Trust', credentials: 'Credentials', deception: 'Deception', keys: 'Key Rotation', blocked: 'Blocked Ports', logs: 'Logs' };
+            const icons = { dashboard: '📊', flow: '🌊', threats: '🚨', trust: '🔐', credentials: '🔑', deception: '🎭', keys: '🔐', blocked: '🚫', logs: '📋' };
             document.getElementById('pageName').textContent = names[page];
             document.getElementById('pageIcon').textContent = icons[page];
         }
 
-        // ==================== TIME ====================
-        function updateTime() {
-            document.getElementById('liveTime').textContent = new Date().toLocaleTimeString();
-        }
+        // ===== TIME =====
+        function updateTime() { document.getElementById('liveTime').textContent = new Date().toLocaleTimeString(); }
         setInterval(updateTime, 1000);
         updateTime();
 
-        // ==================== REAL DATA ====================
+        // ===== DATA GENERATION =====
         let trustHistory = [75, 78, 72, 80, 76, 82, 78, 74, 70, 76];
+        let flowData = { incoming: 0, threat: 0, trust: 0, credential: 0, deception: 0, acdo: '⏳', response: 0 };
 
         function generateData() {
             const now = new Date();
             const timeStr = now.toLocaleTimeString();
-
-            // Trust Score (60-95)
             const trust = Math.round(65 + Math.random() * 30);
             trustHistory.push(trust);
             if (trustHistory.length > 10) trustHistory.shift();
 
-            // Threats
             const threats = Math.floor(Math.random() * 6);
             const blockedPorts = Math.floor(Math.random() * 8 + 3);
             const credentials = Math.floor(Math.random() * 15 + 5);
             const deceptions = Math.floor(Math.random() * 4 + 1);
 
+            // Flow Data - Traditional Relay Switching
+            const incoming = Math.floor(Math.random() * 30 + 10);
+            const threat = Math.floor(Math.random() * 20 + 5);
+            const trustVal = trust;
+            const credential = Math.floor(Math.random() * 15 + 5);
+            const deception = Math.floor(Math.random() * 4 + 1);
+            const acdoStatus = ['⏳ Processing', '✅ Decided', '🔄 Routing', '⚡ Executing'][Math.floor(Math.random() * 4)];
+            const response = Math.floor(Math.random() * 15 + 3);
+
+            flowData = { incoming, threat: threat, trust: trustVal, credential, deception, acdo: acdoStatus, response };
+
             return {
                 trust, threats, blockedPorts, credentials, deceptions,
                 time: timeStr, events: Math.floor(Math.random() * 150 + 50),
-                response: Math.floor(Math.random() * 20 + 8)
+                response: Math.floor(Math.random() * 20 + 8),
+                flow: flowData
             };
         }
 
-        // ==================== UPDATE DASHBOARD ====================
+        // ===== UPDATE FLOW NODES =====
+        function updateFlowNodes(d) {
+            const nodes = {
+                'node-incoming': { val: d.flow.incoming, status: 'active' },
+                'node-threat': { val: d.flow.threat, status: d.flow.threat > 15 ? 'warning' : 'active' },
+                'node-trust': { val: d.flow.trust + '%', status: d.flow.trust > 80 ? 'active' : d.flow.trust > 60 ? 'warning' : 'danger' },
+                'node-credential': { val: d.flow.credential, status: d.flow.credential > 10 ? 'warning' : 'active' },
+                'node-deception': { val: d.flow.deception, status: d.flow.deception > 2 ? 'active' : 'warning' },
+                'node-acdo': { val: d.flow.acdo, status: 'active' },
+                'node-response': { val: d.flow.response, status: d.flow.response > 10 ? 'warning' : 'active' }
+            };
+
+            const arrows = ['arrow1', 'arrow2', 'arrow3', 'arrow4', 'arrow5', 'arrow6'];
+
+            Object.keys(nodes).forEach((id, i) => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.className = 'flow-node ' + nodes[id].status;
+                    const valSpan = el.querySelector('.value');
+                    if (valSpan) valSpan.textContent = nodes[id].val;
+                }
+                if (i < arrows.length) {
+                    const arrow = document.getElementById(arrows[i]);
+                    if (arrow) arrow.className = 'flow-arrow ' + nodes[id].status;
+                }
+            });
+
+            document.getElementById('flowIncoming').textContent = d.flow.incoming;
+            document.getElementById('flowThreat').textContent = d.flow.threat;
+            document.getElementById('flowTrust').textContent = d.flow.trust + '%';
+            document.getElementById('flowCredential').textContent = d.flow.credential;
+            document.getElementById('flowDeception').textContent = d.flow.deception;
+            document.getElementById('flowACDO').textContent = d.flow.acdo;
+            document.getElementById('flowResponse').textContent = d.flow.response;
+            document.getElementById('flowLatency').textContent = Math.floor(Math.random() * 30 + 5);
+        }
+
+        // ===== UPDATE DASHBOARD =====
         function updateDashboard() {
             const d = generateData();
 
-            // ===== DASHBOARD =====
+            // Stats
             document.getElementById('dashEvents').textContent = d.events;
             document.getElementById('dashThreats').textContent = d.threats;
             document.getElementById('dashTrust').textContent = d.trust + '%';
@@ -495,30 +515,22 @@
             document.getElementById('deceptionBadge').textContent = d.deceptions;
             document.getElementById('blockedBadge').textContent = d.blockedPorts;
 
-            // ===== TRUST =====
+            // Flow Nodes
+            updateFlowNodes(d);
+
+            // Trust
             document.getElementById('trustScore').textContent = d.trust + '%';
             document.getElementById('trustScoreBar').style.width = d.trust + '%';
-
-            let level = '⚖️ Balanced';
-            let color = '#00ff88';
-            if (d.trust > 85) { level = '🌟 High Trust'; color = '#00ff88'; }
-            else if (d.trust > 70) { level = '⚖️ Balanced'; color = '#ffcc00'; }
-            else if (d.trust > 55) { level = '⚠️ Caution'; color = '#ff8800'; }
-            else { level = '🔴 Low Trust'; color = '#ff4444'; }
-            document.getElementById('trustLevel').innerHTML = level + ' <span style="color:' + color + ';">●</span>';
-
-            // Trust History
             document.getElementById('trustHistory').innerHTML = trustHistory.map((h, i) =>
-                `<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #111122;">
-                    <span style="color:#666;">${10 - i}m ago</span>
-                    <span>${h}%</span>
-                    <div style="flex:1;margin-left:10px;height:3px;background:#1a1a2e;border-radius:2px;">
+                `<div style="display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid #111122;">
+                    <span style="color:#666;font-size:10px;">${10 - i}m ago</span>
+                    <span style="font-size:11px;">${h}%</span>
+                    <div style="flex:1;margin-left:8px;height:2px;background:#1a1a2e;border-radius:2px;">
                         <div style="height:100%;width:${h}%;background:${h > 70 ? '#00ff88' : h > 50 ? '#ffcc00' : '#ff4444'};border-radius:2px;"></div>
                     </div>
                 </div>`
             ).join('');
 
-            // Trust Entities
             const entities = [
                 { name: 'admin@localhost', trust: 92, status: '✅' },
                 { name: 'analyst_01', trust: 78, status: '✅' },
@@ -527,98 +539,70 @@
                 { name: 'system_bot', trust: 88, status: '✅' }
             ];
             document.getElementById('trustEntities').innerHTML = entities.map(e =>
-                `<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #111122;">
+                `<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #111122;font-size:12px;">
                     <span>${e.name}</span>
                     <span style="color:${e.trust > 70 ? '#00ff88' : e.trust > 50 ? '#ffcc00' : '#ff4444'};">${e.trust}%</span>
                     <span>${e.status}</span>
                 </div>`
             ).join('');
 
-            // ===== CREDENTIALS =====
+            // Credentials
             document.getElementById('credCount').textContent = d.credentials;
             document.getElementById('lastRotation').textContent = d.time;
-
-            const credLogs = [
+            document.getElementById('credLog').innerHTML = [
                 { time: d.time, action: '🔄 User: admin', status: '✅ Rotated' },
                 { time: new Date(Date.now() - 120000).toLocaleTimeString(), action: '🔑 API Key: service-01', status: '✅ Rotated' },
                 { time: new Date(Date.now() - 300000).toLocaleTimeString(), action: '🔐 JWT Token: session-123', status: '✅ Expired' },
-                { time: new Date(Date.now() - 600000).toLocaleTimeString(), action: '🔑 SSH Key: server-01', status: '✅ Rotated' },
-            ];
-            document.getElementById('credLog').innerHTML = credLogs.map(c =>
+            ].map(c =>
                 `<div class="log-line"><span class="time">${c.time}</span><span class="msg">${c.action} <span style="color:#00ff88;">${c.status}</span></span></div>`
             ).join('');
 
-            // ===== DECEPTION =====
+            // Deception
             document.getElementById('deceptionCount').textContent = d.deceptions;
             document.getElementById('deceptionInteractions').textContent = Math.floor(Math.random() * 20 + 5);
-
-            const deceptions = [
+            document.getElementById('deceptionEnvs').innerHTML = [
                 { name: 'Fake Database', status: '🟢 Active', interactions: 12 },
                 { name: 'Fake API Gateway', status: '🟢 Active', interactions: 8 },
                 { name: 'Fake Credential Store', status: '🟡 Monitoring', interactions: 3 },
                 { name: 'Fake Admin Panel', status: '🔴 Triggered', interactions: 17 },
-            ];
-            document.getElementById('deceptionEnvs').innerHTML = deceptions.map(d =>
-                `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #111122;">
+            ].map(d =>
+                `<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #111122;font-size:12px;">
                     <span>🎭 ${d.name}</span>
                     <span>${d.status}</span>
-                    <span style="color:#888;">${d.interactions} interactions</span>
+                    <span style="color:#888;font-size:11px;">${d.interactions} interactions</span>
                 </div>`
             ).join('');
 
-            // ===== KEY ROTATION =====
+            // Keys
             document.getElementById('keyCount').textContent = Math.floor(Math.random() * 20 + 10);
             document.getElementById('keyLastRotation').textContent = d.time;
-
-            const keyLogs = [
+            document.getElementById('keyLog').innerHTML = [
                 { time: d.time, key: 'Master Key', status: '✅ Rotated' },
                 { time: new Date(Date.now() - 180000).toLocaleTimeString(), key: 'API Key', status: '✅ Rotated' },
                 { time: new Date(Date.now() - 360000).toLocaleTimeString(), key: 'JWT Secret', status: '⏳ Scheduled' },
-                { time: new Date(Date.now() - 720000).toLocaleTimeString(), key: 'Encryption Key', status: '✅ Rotated' },
-            ];
-            document.getElementById('keyLog').innerHTML = keyLogs.map(k =>
+            ].map(k =>
                 `<div class="log-line"><span class="time">${k.time}</span><span class="msg">🔐 ${k.key} <span style="color:#00ff88;">${k.status}</span></span></div>`
             ).join('');
 
-            // ===== BLOCKED PORTS =====
+            // Blocked Ports
             document.getElementById('blockedCount').textContent = d.blockedPorts;
             document.getElementById('lastBlocked').textContent = d.time;
-
-            const ports = [
+            document.getElementById('blockedPorts').innerHTML = [
                 { port: 22, proto: 'SSH', from: '192.168.1.45', reason: 'Brute force attempt', status: '🛡️ Blocked' },
                 { port: 80, proto: 'HTTP', from: '10.0.0.23', reason: 'SQL Injection detected', status: '🛡️ Blocked' },
                 { port: 443, proto: 'HTTPS', from: '172.16.0.89', reason: 'Malicious certificate', status: '🛡️ Blocked' },
                 { port: 3306, proto: 'MySQL', from: '10.0.0.67', reason: 'Credential stuffing', status: '🛡️ Blocked' },
                 { port: 3389, proto: 'RDP', from: '192.168.0.12', reason: 'Unauthorized access', status: '🛡️ Blocked' },
-            ];
-            document.getElementById('blockedPorts').innerHTML = ports.map(p =>
-                `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #111122;flex-wrap:wrap;">
+            ].map(p =>
+                `<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #111122;font-size:12px;flex-wrap:wrap;">
                     <span><strong>${p.port}</strong>/${p.proto}</span>
-                    <span style="color:#888;font-size:12px;">from ${p.from}</span>
-                    <span style="color:#ffcc00;font-size:12px;">${p.reason}</span>
+                    <span style="color:#888;font-size:11px;">from ${p.from}</span>
+                    <span style="color:#ffcc00;font-size:11px;">${p.reason}</span>
                     <span style="color:#ff4444;">${p.status}</span>
                 </div>`
             ).join('');
 
-            // ===== MODELS =====
-            const models = [
-                { name: 'UNSW XGBoost', acc: '100%', status: '✅' },
-                { name: 'UNSW RandomForest', acc: '99.5%', status: '✅' },
-                { name: 'EDGE LightGBM', acc: '100%', status: '✅' },
-                { name: 'EDGE RandomForest', acc: '95.2%', status: '✅' },
-                { name: 'CICIDS RandomForest', acc: '86.9%', status: '✅' },
-                { name: 'CICIDS MLP', acc: '77.7%', status: '✅' },
-                { name: 'CICIDS LogisticRegression', acc: '73.4%', status: '✅' },
-            ];
-            document.getElementById('modelList').innerHTML = models.map(m =>
-                `<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #111122;">
-                    <span>🧠 ${m.name}</span>
-                    <span style="color:#00ff88;">${m.acc}</span>
-                    <span>${m.status}</span>
-                </div>`
-            ).join('');
-
-            // ===== THREATS =====
+            // Threats
             const threatTypes = ['Port Scan', 'SQL Injection', 'Brute Force', 'Malware', 'Credential Theft', 'DDoS', 'Reconnaissance', 'API Abuse'];
             const sources = ['192.168.1.' + Math.floor(Math.random() * 255), '10.0.0.' + Math.floor(Math.random() * 255), '172.16.0.' + Math.floor(Math.random() * 255)];
             const sevs = ['Critical', 'High', 'Medium', 'Low'];
@@ -635,24 +619,23 @@
                 };
                 const sevClass = t.sev === 'Critical' ? 'badge-red' : t.sev === 'High' ? 'badge-yellow' : 'badge-blue';
                 threatRows += `<tr>
-                    <td style="color:#666;font-size:12px;">${t.time}</td>
-                    <td>${t.type}</td>
-                    <td style="font-size:12px;">${t.src}</td>
+                    <td style="color:#666;font-size:11px;">${t.time}</td>
+                    <td style="font-size:12px;">${t.type}</td>
+                    <td style="font-size:11px;">${t.src}</td>
                     <td><span class="badge ${sevClass}">${t.sev}</span></td>
-                    <td>${t.status}</td>
-                    <td>${t.status === 'Blocked' ? '🛡️' : t.status === 'Monitoring' ? '👁️' : t.status === 'Quarantined' ? '🧹' : '🔄'}</td>
+                    <td style="font-size:12px;">${t.status}</td>
                 </tr>`;
             }
-            document.getElementById('threatTable').innerHTML = threatRows || '<tr><td colspan="6" style="color:#888;text-align:center;">✅ No active threats</td></tr>';
+            document.getElementById('threatTable').innerHTML = threatRows || '<tr><td colspan="5" style="color:#888;text-align:center;">✅ No active threats</td></tr>';
 
-            // ===== LOGS =====
+            // Logs
             const logMessages = [
                 `🛡️ Blocked ${threatTypes[Math.floor(Math.random() * threatTypes.length)]} from ${sources[Math.floor(Math.random() * sources.length)]}`,
                 `🔐 Credential rotation for user_${Math.floor(Math.random() * 100)}`,
-                `🎭 Deception environment "${['Fake DB', 'Fake API', 'Fake Admin'][Math.floor(Math.random() * 3)]}" deployed`,
+                `🎭 Deception environment deployed`,
                 `📊 Trust score updated: ${d.trust}%`,
-                `🔄 Key rotation completed for ${['Master', 'API', 'JWT', 'Encryption'][Math.floor(Math.random() * 4)]} key`,
-                `🚫 Port ${[22, 80, 443, 3306, 3389][Math.floor(Math.random() * 5)]} blocked - ${['Brute force', 'Malware', 'Suspicious'][Math.floor(Math.random() * 3)]} detected`
+                `🔄 Key rotation completed`,
+                `🚫 Port ${[22, 80, 443, 3306, 3389][Math.floor(Math.random() * 5)]} blocked`
             ];
             const now = new Date();
             document.getElementById('logContainer').innerHTML = logMessages.map((l, i) =>
@@ -663,9 +646,81 @@
             ).join('');
         }
 
-        // ==================== AUTO REFRESH ====================
+        // ===== FULL FLOW PAGE =====
+        function updateFullFlow() {
+            const container = document.getElementById('flowContainerFull');
+            const nodes = [
+                { id: '📡 Incoming', val: flowData.incoming, status: 'active' },
+                { id: '🔍 Threat Scan', val: flowData.threat, status: flowData.threat > 15 ? 'warning' : 'active' },
+                { id: '🔐 Trust TTRM', val: flowData.trust + '%', status: flowData.trust > 80 ? 'active' : flowData.trust > 60 ? 'warning' : 'danger' },
+                { id: '🔑 Credential DCMM', val: flowData.credential, status: flowData.credential > 10 ? 'warning' : 'active' },
+                { id: '🎭 Deception', val: flowData.deception, status: flowData.deception > 2 ? 'active' : 'warning' },
+                { id: '🧠 ACDO', val: flowData.acdo, status: 'active' },
+                { id: '⚡ Response', val: flowData.response, status: flowData.response > 10 ? 'warning' : 'active' }
+            ];
+
+            container.innerHTML = nodes.map((n, i) => `
+                <div class="flow-node ${n.status}">
+                    <span class="icon">${n.id.split(' ')[0]}</span>
+                    <span class="label">${n.id.split(' ').slice(1).join(' ')}</span>
+                    <span class="value">${n.val}</span>
+                </div>
+                ${i < nodes.length - 1 ? `<span class="flow-arrow ${n.status}">▶</span>` : ''}
+            `).join('');
+
+            // Stats
+            document.getElementById('flowStats').innerHTML = `
+                <div style="display:flex;justify-content:space-between;padding:4px 0;font-size:12px;border-bottom:1px solid #1a1a2e;">
+                    <span style="color:#666;">Total Events</span>
+                    <span>${Math.floor(Math.random() * 500 + 100)}</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:4px 0;font-size:12px;border-bottom:1px solid #1a1a2e;">
+                    <span style="color:#666;">Threats Detected</span>
+                    <span style="color:#ff4444;">${flowData.threat}</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:4px 0;font-size:12px;border-bottom:1px solid #1a1a2e;">
+                    <span style="color:#666;">Avg Trust</span>
+                    <span style="color:#00ff88;">${flowData.trust}%</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:4px 0;font-size:12px;">
+                    <span style="color:#666;">Throughput</span>
+                    <span>${Math.floor(Math.random() * 100 + 20)} evt/s</span>
+                </div>
+            `;
+
+            document.getElementById('flowLatencyBreakdown').innerHTML = `
+                <div style="display:flex;justify-content:space-between;padding:3px 0;font-size:11px;border-bottom:1px solid #1a1a2e;">
+                    <span style="color:#666;">Threat Scan</span>
+                    <span>${Math.floor(Math.random() * 5 + 1)}ms</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:3px 0;font-size:11px;border-bottom:1px solid #1a1a2e;">
+                    <span style="color:#666;">Trust Evaluation</span>
+                    <span>${Math.floor(Math.random() * 8 + 2)}ms</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:3px 0;font-size:11px;border-bottom:1px solid #1a1a2e;">
+                    <span style="color:#666;">Credential Check</span>
+                    <span>${Math.floor(Math.random() * 6 + 1)}ms</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:3px 0;font-size:11px;border-bottom:1px solid #1a1a2e;">
+                    <span style="color:#666;">ACDO Decision</span>
+                    <span>${Math.floor(Math.random() * 12 + 3)}ms</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:3px 0;font-size:11px;">
+                    <span style="color:#666;">Total Latency</span>
+                    <span style="color:#00ff88;">${Math.floor(Math.random() * 30 + 10)}ms</span>
+                </div>
+            `;
+        }
+
+        // ===== AUTO REFRESH =====
+        setInterval(() => {
+            updateDashboard();
+            updateFullFlow();
+        }, 3000);
+
+        // ===== INIT =====
         updateDashboard();
-        setInterval(updateDashboard, 5000);
+        updateFullFlow();
     </script>
 </body>
 </html>
